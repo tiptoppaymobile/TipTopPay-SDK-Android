@@ -17,7 +17,7 @@ repositories {
 ```
 В build.gradle уровня приложения добавить зависимость указав последнюю доступную версию SDK:
 
-[![](https://jitpack.io/v/com.github.tiptoppaymobile:TipTopPay-SDK-Android.svg)](https://jitpack.io/#com.github.tiptoppaymobile:TipTopPay-SDK-Android)
+[![](https://jitpack.io/v/tiptoppaymobile/TipTopPay-SDK-Android.svg)](https://jitpack.io/#tiptoppaymobile/TipTopPay-SDK-Android)
 
 ```
 implementation 'com.github.tiptoppaymobile:TipTopPay-SDK-Android:latest-release'
