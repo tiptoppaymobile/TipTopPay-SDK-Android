@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="ttpsdk_padding_small">8dp</dimen>
+    <dimen name="ttpsdk_padding_normal">16dp</dimen>
+    <dimen name="ttpsdk_padding_big">24dp</dimen>
+    <dimen name="ttpsdk_margin_small">8dp</dimen>
+    <dimen name="ttpsdk_margin_normal">16dp</dimen>
+    <dimen name="ttpsdk_margin_big">24dp</dimen>
+
+    <dimen name="ttpsdk_button_height">48dp</dimen>
+</resources>

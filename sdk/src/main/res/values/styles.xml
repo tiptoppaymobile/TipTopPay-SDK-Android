@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="ttpsdk_AcquiringTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <item name="colorPrimary">@color/ttpsdk_dark_sky_blue</item>
+        <item name="colorPrimaryDark">@color/ttpsdk_dark</item>
+        <item name="colorAccent">@color/ttpsdk_dark_sky_blue</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:colorBackgroundCacheHint">@null</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowAnimationStyle">@android:style/Animation</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="bottomSheetDialogTheme">@style/ttpsdk_BottomSheetDialogTheme</item>
+    </style>
+
+    <style name="ttpsdk_BottomSheetDialogTheme" parent="Theme.Design.Light.BottomSheetDialog">
+        <item name="bottomSheetStyle">@style/ttpsdk_AppModalStyle</item>
+    </style>
+
+    <style name="ttpsdk_AppModalStyle" parent="Widget.Design.BottomSheet.Modal">
+        <item name="android:background">@drawable/ttpsdk_bg_rounded_bottom_sheet</item>
+    </style>
+
+    <style name="ttpsdk_Dialog" parent="android:style/Theme.Dialog">
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowIsFloating">true</item>
+    </style>
+
+    <style name="ttpsdk_TextTitle" parent="Widget.MaterialComponents.TextView">
+        <item name="android:layout_marginTop">12dp</item>
+        <item name="android:ellipsize">end</item>
+        <item name="android:fontFamily">@font/rubik_medium</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:letterSpacing">0.01</item>
+        <item name="android:lineSpacingExtra">4sp</item>
+        <item name="android:textColor">#0b1e46</item>
+        <item name="android:textStyle">normal</item>
+    </style>
+
+    <style name="ttpsdk_ButtonBlue" parent="Widget.MaterialComponents.Button.UnelevatedButton">
+        <item name="android:minHeight">56dp</item>
+        <item name="android:background">@drawable/ttpsdk_bg_rounded_blue_button</item>
+        <item name="android:insetBottom">0dp</item>
+        <item name="android:insetTop">0dp</item>
+        <item name="android:fontFamily">@font/sf_pro_text_regular</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:textColor">#ffffff</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:letterSpacing">0.01</item>
+        <item name="android:lineSpacingExtra">6sp</item>
+    </style>
+
+    <style name="ttpsdk_TextRegular" parent="Widget.MaterialComponents.TextView">
+        <item name="android:textSize">16sp</item>
+        <item name="lineHeight">18sp</item>
+        <item name="android:fontFamily">@font/rubik_regular</item>
+    </style>
+
+    <style name="ttpsdk_TextInputLayout">
+        <item name="android:textColorHint">@color/ttpsdk_edit_text_hint</item>
+        <item name="hintTextColor">@color/ttpsdk_edit_text_hint</item>
+        <item name="minHeight">20dp</item>
+        <item name="boxBackgroundColor">@android:color/transparent</item>
+        <item name="boxStrokeWidth">0dp</item>
+        <item name="boxStrokeWidthFocused">0dp</item>
+    </style>
+
+    <style name="ttpsdk_TextInputEditText">
+        <item name="minHeight">20dp</item>
+        <item name="android:background">@drawable/ttpsdk_bg_edit_text_selector</item>
+        <item name="android:ellipsize">end</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:textColorHint">#8C949F</item>
+    </style>
+
+    <style name="ttpsdk_BlockButtonView">
+        <item name="android:alpha">0.5</item>
+        <item name="android:background">@color/ttpsdk_white</item>
+        <item name="android:clickable">true</item>
+        <item name="android:focusable">true</item>
+        <item name="android:focusableInTouchMode">true</item>
+    </style>
+</resources>

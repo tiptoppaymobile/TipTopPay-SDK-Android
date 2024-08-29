@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#00B3ED</color>
+    <color name="colorPrimaryDark">#393861</color>
+    <color name="colorAccent">#00B3ED</color>
+    <color name="ttpsdk_dark">#1f1f2e</color>
+    <color name="ttpsdk_grey">#62626c</color>
+    <color name="ttpsdk_light_blue_grey">#c0c9d4</color>
+    <color name="ttpsdk_dark_sky_blue">#00B3ED</color>
+    <color name="ttpsdk_pale_red">#ec4444</color>
+    <color name="ttpsdk_white">#ffffff</color>
+    <color name="ttpsdk_black">#000000</color>
+    <color name="ttpsdk_blue">#2e71fc</color>
+    <color name="ttpsdk_transparent">#64000000</color>
+    <color name="ttpsdk_edit_text_hint">#8C949F</color>
+    <color name="ttpsdk_color_text_splash_screen_loader">#0B1E46</color>
+</resources>

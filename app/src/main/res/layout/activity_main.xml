@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white">
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="@dimen/ui_margin_16dp">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginEnd="24dp"
+                android:paddingTop="-16dp"
+                android:paddingBottom="-16dp"
+                android:src="@drawable/logo" />
+
+            <Button
+                android:id="@+id/button_run_top"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/ui_margin_16dp"
+                android:text="RUN" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:gravity="center"
+                android:text="Settings:"
+                android:textColor="@android:color/black"
+                android:textSize="24sp"
+                android:textStyle="bold" />
+
+            <TextView
+                style="@style/DemoTextView"
+                android:text="API URL (only for testing):" />
+
+            <EditText
+                android:id="@+id/edit_api_url"
+                style="@style/DemoEditText"
+                android:hint="https://api.tiptoppay.kz/"/>
+
+            <TextView
+                style="@style/DemoTextView"
+                android:text="PublicID:" />
+
+            <EditText
+                android:id="@+id/edit_public_id"
+                style="@style/DemoEditText"
+                android:text="test_api_00000000000000000000002"
+                android:hint="test_api_00000000000000000000002" />
+
+            <TextView
+                style="@style/DemoTextView"
+                android:text="Amount:" />
+
+            <EditText
+                android:id="@+id/edit_amount"
+                style="@style/DemoEditText"
+                android:hint="10"
+                android:text="10" />
+
+            <TextView
+                style="@style/DemoTextView"
+                android:text="Currency (Optional):" />
+
+            <EditText
+                android:id="@+id/edit_currency"
+                style="@style/DemoEditText"
+                android:hint="KZT"
+                android:text="KZT" />
+
+            <TextView
+                style="@style/DemoTextView"
+                android:text="InvoiceId (Optional):" />
+
+            <EditText
+                android:id="@+id/edit_invoice_id"
+                style="@style/DemoEditText"
+                android:hint="AB1234"
+                android:text="AB1234" />
+
+            <TextView
+                style="@style/DemoTextView"
+                android:text="Description (Optional):" />
+
+            <EditText
+                android:id="@+id/edit_description"
+                style="@style/DemoEditText"
+                android:hint="A basket of oranges"
+                android:text="A basket of oranges" />
+
+            <TextView
+                style="@style/DemoTextView"
+                android:text="AccountId (Optional):" />
+
+            <EditText
+                android:id="@+id/edit_account_id"
+                style="@style/DemoEditText"
+                android:hint="AB12"
+                android:text="AB12" />
+
+            <TextView
+                style="@style/DemoTextView"
+                android:text="Email (Optional):" />
+
+            <EditText
+                android:id="@+id/edit_email"
+                style="@style/DemoEditText"
+                android:hint="test@tiptoppay.inc"
+                android:text="test@tiptoppay.inc" />
+
+            <TextView
+                style="@style/DemoTextView"
+                android:text="Payer.FirstName (Optional):" />
+
+            <EditText
+                android:id="@+id/edit_payer_first_name"
+                style="@style/DemoEditText"
+                android:hint="Alex"
+                android:text="Alex" />
+
+            <TextView
+                style="@style/DemoTextView"
+                android:text="Payer.LastName (Optional):" />
+
+            <EditText
+                android:id="@+id/edit_payer_last_name"
+                style="@style/DemoEditText"
+                android:hint="Smith"
+                android:text="Smith" />
+
+            <TextView
+                style="@style/DemoTextView"
+                android:text="Payer.MiddleName (Optional):" />
+
+            <EditText
+                android:id="@+id/edit_payer_middle_name"
+                style="@style/DemoEditText"
+                android:hint="-"
+                android:text="-" />
+
+            <TextView
+                style="@style/DemoTextView"
+                android:text="Payer.Birth (Optional):" />
+
+            <EditText
+                android:id="@+id/edit_payer_birth"
+                style="@style/DemoEditText"
+                android:hint="1955-02-24"
+                android:text="1955-02-24" />
+
+            <TextView
+                style="@style/DemoTextView"
+                android:text="Payer.Address (Optional):" />
+
+            <EditText
+                android:id="@+id/edit_payer_address"
+                style="@style/DemoEditText"
+                android:hint="home 8, room 36"
+                android:text="home 8, room 36" />
+
+            <TextView
+                style="@style/DemoTextView"
+                android:text="Payer.Street (Optional):" />
+
+            <EditText
+                android:id="@+id/edit_payer_street"
+                style="@style/DemoEditText"
+                android:hint="Baker Street"
+                android:text="Baker Street" />
+
+            <TextView
+                style="@style/DemoTextView"
+                android:text="Payer.City (Optional):" />
+
+            <EditText
+                android:id="@+id/edit_payer_city"
+                style="@style/DemoEditText"
+                android:hint="London"
+                android:text="London" />
+
+            <TextView
+                style="@style/DemoTextView"
+                android:text="Payer.Country (Optional):" />
+
+            <EditText
+                android:id="@+id/edit_payer_country"
+                style="@style/DemoEditText"
+                android:hint="EN"
+                android:text="EN" />
+
+            <TextView
+                style="@style/DemoTextView"
+                android:text="Payer.Phone (Optional):" />
+
+            <EditText
+                android:id="@+id/edit_payer_phone"
+                style="@style/DemoEditText"
+                android:hint="+39991234567"
+                android:text="+39991234567" />
+
+            <TextView
+                style="@style/DemoTextView"
+                android:text="Payer.Postcode (Optional):" />
+
+            <EditText
+                android:id="@+id/edit_payer_postcode"
+                style="@style/DemoEditText"
+                android:hint="123456"
+                android:text="123456" />
+
+            <TextView
+                style="@style/DemoTextView"
+                android:text="JsonData (Optional):" />
+
+            <EditText
+                android:id="@+id/edit_json_data"
+                style="@style/DemoEditText"
+                android:layout_height="wrap_content"
+                android:hint="{name: Alex}"
+                android:maxLines="100"
+                android:singleLine="false"
+                android:text="{name: Alex}" />
+
+            <CheckBox
+                android:id="@+id/checkbox_dual_message_payment"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Dual message payment"
+                android:checked="true"/>
+
+            <Button
+                android:id="@+id/button_run"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/ui_margin_16dp"
+                android:text="RUN" />
+
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- ERRORS -->
+    <string name="ttpsdk_error_5061">Төлем орындалмады: карта лимитінен асып кетті</string>
+    <string name="ttpsdk_error_5061_extra">Карта бойынша төлем лимитінен асып кетті. Шектеу параметрлерін өзгертіңіз немесе басқа картаны пайдаланыңыз</string>
+
+</resources>
