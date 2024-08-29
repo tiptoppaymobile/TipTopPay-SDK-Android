@@ -100,7 +100,7 @@ dependencies {
 
     implementation project(path: ':sdk')
 
-    //implementation 'com.gitlab.tiptoppay.mobile:tiptoppay-sdk-android:1.0.0'
+    //implementation 'com.github.tiptoppaymobile:TipTopPay-SDK-Android:1.0.2'
 }
 
 ext {
