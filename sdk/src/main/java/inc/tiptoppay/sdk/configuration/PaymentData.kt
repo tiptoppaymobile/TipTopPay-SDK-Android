@@ -7,12 +7,13 @@ import com.google.gson.JsonSyntaxException
 import com.google.gson.annotations.SerializedName
 import kotlinx.parcelize.Parcelize
 import inc.tiptoppay.sdk.api.models.PaymentDataPayer
+import inc.tiptoppay.sdk.models.Currency
 import inc.tiptoppay.sdk.util.TAG
 
 @Parcelize
 class PaymentData(
 	val amount: String,
-	var currency: String = "RUB",
+	var currency: Currency,
 	val invoiceId: String? = null,
 	val description: String? = null,
 	val accountId: String? = null,

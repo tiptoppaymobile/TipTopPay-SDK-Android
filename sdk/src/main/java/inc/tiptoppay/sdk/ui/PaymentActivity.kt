@@ -63,10 +63,17 @@ internal class PaymentActivity: FragmentActivity(), BasePaymentBottomSheetFragme
 	}
 
 	internal val component: TipTopPayComponent by lazy {
+
+		val apiUrl = if (paymentConfiguration!!.apiUrl.isNullOrEmpty()) {
+			paymentConfiguration!!.region.apiUrl
+		} else {
+			paymentConfiguration!!.apiUrl
+		}
+
 		inc.tiptoppay.sdk.dagger2.DaggerTipTopPayComponent
 			.builder()
 			.tipTopPayModule(TipTopPayModule())
-			.tipTopPayNetModule(TipTopPayNetModule(paymentConfiguration!!.publicId, paymentConfiguration!!.apiUrl))
+			.tipTopPayNetModule(TipTopPayNetModule(paymentConfiguration!!.publicId, apiUrl))
 			.build()
 	}
 
@@ -83,8 +90,6 @@ internal class PaymentActivity: FragmentActivity(), BasePaymentBottomSheetFragme
 		setContentView(view)
 
 		component.inject(this)
-
-		checkCurrency()
 
 		getPublicKey()
 	}
@@ -265,11 +270,5 @@ internal class PaymentActivity: FragmentActivity(), BasePaymentBottomSheetFragme
 
 	private fun handleGooglePayFailure(intent: Intent?) {
 		finish()
-	}
-
-	private fun checkCurrency() {
-		if (paymentConfiguration!!.paymentData.currency.isEmpty()) {
-			paymentConfiguration!!.paymentData.currency = "KZT"
-		}
 	}
 }

@@ -120,6 +120,35 @@
             tools:text="111" />
     </com.google.android.material.textfield.TextInputLayout>
 
+    <ImageView
+        android:id="@+id/button_3ds_info_popup"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:src="@drawable/ttpsdk_ic_question"
+        android:visibility="gone"
+        app:layout_constraintTop_toBottomOf="@id/til_card_exp"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <TextView
+        android:id="@+id/text_3ds_info"
+        android:layout_width="0px"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:drawablePadding="8dp"
+        android:fontFamily="@font/sf_pro_text_regular"
+        android:letterSpacing="-0.01"
+        android:lineSpacingExtra="5sp"
+        android:text="@string/ttpsdk_text_card_3ds_info"
+        android:textColor="#8c949f"
+        android:textSize="13sp"
+        android:textStyle="normal"
+        android:visibility="gone"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/button_3ds_info_popup"
+        app:layout_constraintTop_toBottomOf="@id/til_card_exp" />
+
     <Button
         android:id="@+id/button_pay"
         style="@style/ttpsdk_ButtonBlue"
@@ -128,7 +157,7 @@
         android:layout_marginTop="16dp"
         android:text="@string/ttpsdk_text_card_pay_button"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/til_card_exp" />
+        app:layout_constraintTop_toBottomOf="@id/text_3ds_info" />
 
     <View
         android:id="@+id/view_block_buttons"

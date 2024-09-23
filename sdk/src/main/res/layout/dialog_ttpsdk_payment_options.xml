@@ -88,7 +88,7 @@
         android:layout_height="24dp"
         android:layout_marginStart="8dp"
         android:layout_marginBottom="-2dp"
-        android:src="@drawable/ttpsdk_ic_save_card_popup"
+        android:src="@drawable/ttpsdk_ic_question"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="@id/checkbox_save_card"
         app:layout_constraintStart_toEndOf="@id/checkbox_save_card" />
@@ -171,7 +171,7 @@
         android:layout_height="24dp"
         android:layout_marginStart="8dp"
         android:layout_marginBottom="-2dp"
-        android:src="@drawable/ttpsdk_ic_save_card_popup"
+        android:src="@drawable/ttpsdk_ic_question"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="@id/text_card_be_saved"
         app:layout_constraintStart_toEndOf="@id/text_card_be_saved" />

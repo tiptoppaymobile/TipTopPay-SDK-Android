@@ -71,7 +71,7 @@
     <string name="ttpsdk_error_5054">Карта просрочена или неверно указан срок действия</string>
     <string name="ttpsdk_error_5057">Ограничение на карте</string>
     <string name="ttpsdk_error_5059"></string>
-    <string name="ttpsdk_error_5061">Төлем орындалмады: карта лимитінен асып кетті</string>
+    <string name="ttpsdk_error_5061">Не удалось выполнить оплату: превышен лимит по карте</string>
     <string name="ttpsdk_error_5062"></string>
     <string name="ttpsdk_error_5063"></string>
     <string name="ttpsdk_error_5065">Превышен лимит операций по карте</string>
@@ -112,7 +112,7 @@
     <string name="ttpsdk_error_5054_extra">Проверьте правильность введенных данных карты или воспользуйтесь другой картой</string>
     <string name="ttpsdk_error_5057_extra">Свяжитесь с вашим банком или воспользуйтесь другой картой</string>
     <string name="ttpsdk_error_5059_extra"></string>
-    <string name="ttpsdk_error_5061_extra">Карта бойынша төлем лимитінен асып кетті. Шектеу параметрлерін өзгертіңіз немесе басқа картаны пайдаланыңыз</string>
+    <string name="ttpsdk_error_5061_extra">Превышение лимита оплаты по карте. Измените настройки лимита или оплатите другой картой</string>
     <string name="ttpsdk_error_5062_extra"></string>
     <string name="ttpsdk_error_5063_extra"></string>
     <string name="ttpsdk_error_5065_extra">Свяжитесь с вашим банком или воспользуйтесь другой картой</string>

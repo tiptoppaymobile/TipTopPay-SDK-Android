@@ -2,20 +2,20 @@
 
 ## TipTopPay SDK for Android 
 
-TipTopPay SDK позволяет интегрировать прием платежей в мобильные приложение для платформы Android.
+TipTopPay SDK allows to integrate payment processing service into an Android application.
 
-### Требования
-Для работы TipTopPay SDK необходим Android версии 6.0 или выше (API level 23)
+### Requirements
+Android v. 6.0 and younger (API level 23)
 
-### Подключение
-В build.gradle уровня проекта добавить репозиторий Jitpack
+### Connection
+Add Jitpack repository into build.gradle at project level 
 
 ```
 repositories {
-	maven { url 'https://jitpack.io' }
+    maven { url 'https://jitpack.io' }
 }
 ```
-В build.gradle уровня приложения добавить зависимость указав последнюю доступную версию SDK:
+Add dependence with indication of the latest SDK version into build.gradle at application level:
 
 [![](https://jitpack.io/v/tiptoppaymobile/TipTopPay-SDK-Android.svg)](https://jitpack.io/#tiptoppaymobile/TipTopPay-SDK-Android)
 
@@ -23,222 +23,226 @@ repositories {
 implementation 'com.github.tiptoppaymobile:TipTopPay-SDK-Android:latest-release'
 ```
 
-### Структура проекта:
+### Project structure:
 
-* **app** - Пример реализации приложения с использованием SDK
-* **sdk** - Исходный код SDK
+* **app** - An example app using SDK
+* **sdk** - Source code of SDK
 
 
-### Использование платежной формы SDK TipTopPay:
+### Payment form usage of TipTopPay SDK:
 
-1.	Создайте TtpSdkLauncher для получения результата через Activity Result API (рекомендуется использовать, но если хотите получить результат в onActivityResult этот шаг можно пропустить)
+1.    Create TtpSdkLauncher to get result via Activity Result API (recommended, but this step can be skipped in case of getting result via onActivityResult)
 
 ```
 val ttpSdkLauncher = TipTopPaySDK.getInstance().launcher(this, result = {
-		if (it.status != null) {
-			if (it.status == TipTopPaySDK.TransactionStatus.Succeeded) {
-				Toast.makeText(this, "Успешно! Транзакция №${it.transactionId}", Toast.LENGTH_SHORT).show()
-				finish()
-			} else {
-				if (it.reasonCode != 0) {
-					Toast.makeText(this, "Ошибка! Транзакция №${it.transactionId}. Код ошибки ${it.reasonCode}", Toast.LENGTH_SHORT).show()
-				} else {
-					Toast.makeText(this, "Ошибка! Транзакция №${it.transactionId}.", Toast.LENGTH_SHORT).show()
-				}
-			}
-		}
-	})
+        if (it.status != null) {
+            if (it.status == TipTopPaySDK.TransactionStatus.Succeeded) {
+                Toast.makeText(this, " Succeeded! Transaction №${it.transactionId}", Toast.LENGTH_SHORT).show()
+                finish()
+            } else {
+                if (it.reasonCode != 0) {
+                    Toast.makeText(this, "Error! Transaction №${it.transactionId}. Reason code ${it.reasonCode}", Toast.LENGTH_SHORT).show()
+                } else {
+                    Toast.makeText(this, "Error! Transaction №${it.transactionId}.", Toast.LENGTH_SHORT).show()
+                }
+            }
+        }
+    })
 ```
 
-2. Создайте объект PaymentData, передайте в него сумму платежа, валюту и другие данные, если необходимо передать подробную информацию о плательщике создайте объект PaymentDataPayer с информацией о плательщике и также пердайте этот объект в PaymentData.
+2. Create an object PaymentData, send into it payment amount, currency and other data. If it is necessary to send detailed customer’s data, create and use an object PaymentDataPayer, also sending it to PaymentData
 
 ```
-var payer = PaymentDataPayer() // Доп. поле, куда передается информация о плательщике:
-payer.firstName = payerFirstName // Имя
-payer.lastName = payerLastName // Фамилия
-payer.middleName = payerMiddleName // Отчество
-payer.birthDay = payerBirthDay // День рождения
-payer.address = payerAddress // Адрес
-payer.street = payerStreet // Улица
-payer.city = payerCity // Город
-payer.country = payerCountry // Страна
-payer.phone = payerPhone // Телефон
-payer.postcode = payerPostcode // Почтовый индекс
+var payer = PaymentDataPayer() // Extra parameter for customer’s data:
+payer.firstName = payerFirstName // First name
+payer.lastName = payerLastName // Last name
+payer.middleName = payerMiddleName // Middle name
+payer.birthDay = payerBirthDay // Birth date
+payer.address = payerAddress // Address
+payer.street = payerStreet // Street
+payer.city = payerCity // City
+payer.country = payerCountry // Country
+payer.phone = payerPhone // Phone number
+payer.postcode = payerPostcode // Postal code
 
 val paymentData = PaymentData(
-	amount = amount, // Cумма платежа в валюте
-	currency = currency, // Валюта
-	invoiceId = invoiceId, // Номер счета или заказа
-	description = description, // Описание оплаты в свободной форме
-	accountId = accountId, // Идентификатор пользователя
-	email = email, // E-mail плательщика, на который будет отправлена квитанция об оплате
-	payer = payer, // Информация о плательщике
-	jsonData = jsonData // Любые другие данные, которые будут связаны с транзакцией {name: Ivan}
+    amount = amount, // Payment amount
+    currency = Currency.MXN, // Payment currency
+    invoiceId = invoiceId, // Order or invoice number
+    description = description, // Payment description
+    accountId = accountId, // Customer’s identification number
+    email = email, // Customer’s e-mail (used for sending payment confirmation)
+    payer = payer, // Customer’s information
+    jsonData = jsonData // Any other data linked to this payment {name: Ivan}
 )
 ```
 
-3. Создайте объект PaymentConfiguration, передайте в него Public Id из [личного кабинета TipTopPay](https://merchant.tiptoppay.kz/), объект PaymentData, а так же укажите другие параметры.
+3. Create an object PaymentConfiguration, send into it Public Id obtained from [TipTopPay Control Panel](https://merchant.tiptoppay.kz/). Also send PaymentData and other parameters.
 
 ```
 val configuration = PaymentConfiguration(
-	publicId = publicId, // Ваш PublicID в полученный в ЛК TipTopPay
-	paymentData = paymentData, // Информация о платеже
-	scanner = CardIOScanner(), // Сканер банковских карт
-	requireEmail = false, // Обязателный email для проведения оплаты (по умолчанию false)
-	useDualMessagePayment = true, // Использовать двухстадийную схему проведения платежа, по умолчанию используется одностадийная схема
-	)
+    publicId = publicId, // Your Public ID obtained in the Control Panel
+    region = Region.MX, // Your region Mexico (MX) or Kazakhstan (KZ)    
+    paymentData = paymentData, // Payment data
+    scanner = CardIOScanner(), // Card scanner
+    requireEmail = false, // Usage of email (false – not required, true – required)
+    useDualMessagePayment = true, // Usage of two-staged payments (true). By default is using one-staged payments (false)
+    )
 ```
 
-4. Вызовите форму оплаты. 
+4. Initiate the payment UI. 
 
 ```
-ttpSdkLauncher.launch(configuration) // Если используете Activity Result API
+ttpSdkLauncher.launch(configuration) // If you are using Activity Result API
 
-// или
+// or
 
-TipTopPaySDK.getInstance().start(configuration, this, REQUEST_CODE_PAYMENT) // Если хотите получть результат в onActivityResult 
+TipTopPaySDK.getInstance().start(configuration, this, REQUEST_CODE_PAYMENT) // In case of getting result via onActivityResult 
 ```
 
-5. Получите результат в onActivityResult (если не используете Activity Result API)
+5. Get result via onActivityResult (if Activity Result API is not used)
 
 ```
 override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) = when (requestCode) {
-		REQUEST_CODE_PAYMENT -> {
-			val transactionId = data?.getIntExtra(TipTopPaySDK.IntentKeys.TransactionId.name, 0) ?: 0
-			val transactionStatus = data?.getSerializableExtra(TipTopPaySDK.IntentKeys.TransactionStatus.name) as? TipTopPaySDK.TransactionStatus
+        REQUEST_CODE_PAYMENT -> {
+            val transactionId = data?.getIntExtra(TipTopPaySDK.IntentKeys.TransactionId.name, 0) ?: 0
+            val transactionStatus = data?.getSerializableExtra(TipTopPaySDK.IntentKeys.TransactionStatus.name) as? TipTopPaySDK.TransactionStatus
 
 
-			if (transactionStatus != null) {
-				if (transactionStatus == TipTopPaySDK.TransactionStatus.Succeeded) {
-					Toast.makeText(this, "Успешно! Транзакция №$transactionId", Toast.LENGTH_SHORT).show()
-				} else {
-					val reasonCode = data.getIntExtra(TipTopPaySDK.IntentKeys.TransactionReasonCode.name, 0) ?: 0
-					if (reasonCode > 0) {
-						Toast.makeText(this, "Ошибка! Транзакция №$transactionId. Код ошибки $reasonCode", Toast.LENGTH_SHORT).show()
-					} else {
-						Toast.makeText(this, "Ошибка! Транзакция №$transactionId.", Toast.LENGTH_SHORT).show()
-					}
-				}
-			}
-		}
-		else -> super.onActivityResult(requestCode, resultCode, data)
+            if (transactionStatus != null) {
+                if (transactionStatus == TipTopPaySDK.TransactionStatus.Succeeded) {
+                    Toast.makeText(this, " Succeeded! Transaction №$transactionId", Toast.LENGTH_SHORT).show()
+                } else {
+                    val reasonCode = data.getIntExtra(TipTopPaySDK.IntentKeys.TransactionReasonCode.name, 0) ?: 0
+                    if (reasonCode > 0) {
+                        Toast.makeText(this, "Error! Transaction №$transactionId. Reason code $reasonCode", Toast.LENGTH_SHORT).show()
+                    } else {
+                        Toast.makeText(this, "Error! Transaction №$transactionId.", Toast.LENGTH_SHORT).show()
+                    }
+                }
+            }
+        }
+        else -> super.onActivityResult(requestCode, resultCode, data)
 ```
 
-#### Подключение Google Pay  через TipTopPay
+#### Google Pay  connection via TipTopPay
 
-[Документация](https://developers.google.com/payments/setup)
+[Documentation](https://developers.google.com/payments/setup)
 
-#### Включение Google Pay 
+#### Enabling Google Pay 
 
-В файл build.gradle подключите следующую зависимость:
+In build.gradle connect the following dependence:
 
 ```
 implementation 'com.google.android.gms:play-services-wallet:18.1.2'
 ```
 
-В файл манифест приложения добавьте мета информацию:
+Add meta data into the application manifest:
 
 ```
 <meta-data
-	android:name="com.google.android.gms.wallet.api.enabled"
-	android:value="true" />
+    android:name="com.google.android.gms.wallet.api.enabled"
+    android:value="true" />
 ```
-#### Проведение платежа через Google Pay с помощью формы TipTopPay
+#### Google Pay payment acceptance using TipTopPay form
 
-Никаких дополнительных шагов не требуется. Форма автоматически определяет, подключен Google Pay или нет. В зависимости от этого покажется форма выбора способа оплаты (Google Pay или карта) или форма ввода карточных данных
+No additional steps are required. The form is determined automatically whether Google Pay is connected or not. Depending on this, the form for selecting the payment method (Google Pay or card) or the form for entering card data will be determined.
 
-### Другие функции
+### Other functions
 
-* Проверка карточного номера на корректность
+* Card number validation
 
 ```
 Card.isValidNumber(cardNumber)
 
 ```
 
-* Проверка срока действия карты
+* Card expiry date validation
 
 ```
-Card.isValidExpDate(expDate) // expDate в формате MM/yy
+Card.isValidExpDate(expDate) // expDate in the format of MM/yy
 
 ```
 
-* Определение типа платежной системы
+* Payment system definition
 
 ```
 let cardType: CardType = Card.cardType(from: cardNumberString)
 ```
 
-* Шифрование карточных данных и создание криптограммы для отправки на сервер
+* Card data encryption for sending to the server 
 
 ```
 val cardCryptogram = Card.cardCryptogram(cardNumber, cardDate, cardCVC, Constants.MERCHANT_PUBLIC_ID)
 ```
 
-* Шифрование cvv при оплате сохраненной картой и создание криптограммы для отправки на сервер
+* CVV encryption for payments by a saved card and sending to the server 
 
 ```
 val cvvCryptogramPacket = Card.cardCryptogramForCVV(cvv)
 ```
 
-* Отображение 3DS формы и получении результата 3DS аутентификации
+* Displaying 3DS page and getting authentication result
 
 ```
 val acsUrl = transaction.acsUrl
 val paReq = transaction.paReq
 val md = transaction.transactionId
 ThreeDsDialogFragment
-	.newInstance(acsUrl, paReq, md)
-	.show(supportFragmentManager, "3DS")
+    .newInstance(acsUrl, paReq, md)
+    .show(supportFragmentManager, "3DS")
 
 interface ThreeDSDialogListener {
-	fun onAuthorizationCompleted(md: String, paRes: String)
-	fun onAuthorizationFailed(error: String?)
+    fun onAuthorizationCompleted(md: String, paRes: String)
+    fun onAuthorizationFailed(error: String?)
 }
 ```
 
-* Сканер карт
-Вы можете подключить любой сканер карт, который вызывается с помощью Activity. Для этого нужно реализовать протокол CardScanner и передать объект, реализующий протокол, при создании PaymentConfiguration. Если протокол не будет реализован, то кнопка сканирования не будет показана
-
-Пример со сканером CardIO
+* Card scanner
+You can connect any card scanner that is created using Activity. To do this, you need to implement the CardScanner protocol and pass an object implementing the protocol when creating PaymentConfiguration. If the protocol is not implemented, the enable button will not be shown.
+An example using CardIO scanner
 
 ```
 @Parcelize
 class CardIOScanner: CardScanner() {
-	override fun getScannerIntent(context: Context) =
-		Intent(context, CardIOActivity::class.java).apply {
-			putExtra(CardIOActivity.EXTRA_REQUIRE_EXPIRY, true)
-		}
+    override fun getScannerIntent(context: Context) =
+        Intent(context, CardIOActivity::class.java).apply {
+            putExtra(CardIOActivity.EXTRA_REQUIRE_EXPIRY, true)
+        }
 
-	override fun getCardDataFromIntent(data: Intent) =
-		if (data.hasExtra(CardIOActivity.EXTRA_SCAN_RESULT)) {
-			val scanResult = data.getParcelableExtra(CardIOActivity.EXTRA_SCAN_RESULT) as? CreditCard
-			val month = (scanResult?.expiryMonth ?: 0).toString().padStart(2, '0')
-			val yearString = scanResult?.expiryYear?.toString() ?: "00"
-			val year = if (yearString.length > 2) {
-				yearString.substring(yearString.lastIndex - 1)
-			} else {
-				yearString.padStart(2, '0')
-			}
-			val cardData = CardData(scanResult?.cardNumber, month, year, scanResult?.cardholderName)
-			cardData
-		} else {
-			null
-		}
+    override fun getCardDataFromIntent(data: Intent) =
+        if (data.hasExtra(CardIOActivity.EXTRA_SCAN_RESULT)) {
+            val scanResult = data.getParcelableExtra(CardIOActivity.EXTRA_SCAN_RESULT) as? CreditCard
+            val month = (scanResult?.expiryMonth ?: 0).toString().padStart(2, '0')
+            val yearString = scanResult?.expiryYear?.toString() ?: "00"
+            val year = if (yearString.length > 2) {
+                yearString.substring(yearString.lastIndex - 1)
+            } else {
+                yearString.padStart(2, '0')
+            }
+            val cardData = CardData(scanResult?.cardNumber, month, year, scanResult?.cardholderName)
+            cardData
+        } else {
+            null
+        }
 }
 ```
 
-### История обновлений:
+### Update history:
+
+#### 1.0.3
+* Added region and localization
+
 
 #### 1.0.2
-* Добавлено уведомление плательщика о сохранении карты
+* Added customer’s notification at saving a card
 
 #### 1.0.1
-* Добавлена расшифрока некоторых причин отказа в проведении платежа
-
+* Added explanation of some reasons of payment declines
 #### 1.0.0
-* Опубликована первая версия SDK
+* Initial version
 
-### Поддержка
+### Support
 
-По возникающим вопросам техничечкого характера обращайтесь на support-kz@tiptoppay.inc
+Contact soporte@tiptoppay.inc (Mexico) or support-kz@tiptoppay.inc (Kazakhstan)
+

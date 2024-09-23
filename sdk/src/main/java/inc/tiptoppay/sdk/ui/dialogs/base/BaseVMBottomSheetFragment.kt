@@ -3,6 +3,7 @@ package inc.tiptoppay.sdk.ui.dialogs.base
 import android.content.DialogInterface
 import android.os.Bundle
 import android.view.View
+import android.view.WindowManager
 import androidx.lifecycle.Observer
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import inc.tiptoppay.sdk.viewmodel.BaseViewModel
@@ -20,6 +21,13 @@ internal abstract class BaseVMBottomSheetFragment<VS: BaseViewState, VM: BaseVie
 		})
 
 	}
+
+	override fun onStart() {
+		super.onStart()
+
+		dialog?.window?.clearFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND)
+	}
+
 	override fun onCancel(dialog: DialogInterface) {
 		super.onCancel(dialog)
 		activity?.finish()

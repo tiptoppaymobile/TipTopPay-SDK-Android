@@ -71,16 +71,6 @@
 
             <TextView
                 style="@style/DemoTextView"
-                android:text="Currency (Optional):" />
-
-            <EditText
-                android:id="@+id/edit_currency"
-                style="@style/DemoEditText"
-                android:hint="KZT"
-                android:text="KZT" />
-
-            <TextView
-                style="@style/DemoTextView"
                 android:text="InvoiceId (Optional):" />
 
             <EditText

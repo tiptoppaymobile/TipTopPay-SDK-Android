@@ -7,18 +7,8 @@ import androidx.activity.result.ActivityResultLauncher
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
-import okhttp3.OkHttpClient
-import okhttp3.logging.HttpLoggingInterceptor
-import retrofit2.Retrofit
-import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
-import retrofit2.converter.gson.GsonConverterFactory
-import inc.tiptoppay.sdk.Constants
-import inc.tiptoppay.sdk.api.AuthenticationInterceptor
-import inc.tiptoppay.sdk.api.TipTopPayApiService
-import inc.tiptoppay.sdk.api.TipTopPayApi
 import inc.tiptoppay.sdk.models.Transaction
 import inc.tiptoppay.sdk.ui.PaymentActivity
-import java.util.concurrent.TimeUnit
 
 interface TipTopPaySDK {
 	fun start(configuration: PaymentConfiguration, from: Activity, requestCode: Int)
@@ -42,35 +32,6 @@ interface TipTopPaySDK {
 
 		fun getInstance(): TipTopPaySDK {
 			return TipTopPaySDKImpl()
-		}
-
-		fun createApi(publicId: String) = TipTopPayApi(createService(publicId))
-
-		private fun createService(publicId: String): TipTopPayApiService {
-			val retrofit = Retrofit.Builder()
-				.baseUrl(Constants.baseApiUrl)
-				.addConverterFactory(GsonConverterFactory.create())
-				.addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-				.client(createClient(publicId))
-				.build()
-
-			return retrofit.create(TipTopPayApiService::class.java)
-		}
-
-		private fun createClient(publicId: String?): OkHttpClient {
-			val okHttpClientBuilder = OkHttpClient.Builder()
-					.addInterceptor(HttpLoggingInterceptor()
-											.setLevel(HttpLoggingInterceptor.Level.BODY))
-			val client = okHttpClientBuilder
-					.connectTimeout(20, TimeUnit.SECONDS)
-					.readTimeout(20, TimeUnit.SECONDS)
-					.followRedirects(false)
-
-			if (publicId != null){
-				client.addInterceptor(AuthenticationInterceptor(publicId))
-			}
-
-			return client.build()
 		}
 	}
 }

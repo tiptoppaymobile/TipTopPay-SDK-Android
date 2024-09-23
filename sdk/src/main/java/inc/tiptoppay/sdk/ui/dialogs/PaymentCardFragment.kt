@@ -3,9 +3,13 @@ package inc.tiptoppay.sdk.ui.dialogs
 import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
+import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.LinearLayout
+import android.widget.PopupWindow
+import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import inc.tiptoppay.sdk.R
@@ -13,6 +17,7 @@ import inc.tiptoppay.sdk.card.Card
 import inc.tiptoppay.sdk.card.CardType
 import inc.tiptoppay.sdk.databinding.DialogTtpsdkPaymentCardBinding
 import inc.tiptoppay.sdk.models.Currency
+import inc.tiptoppay.sdk.models.Region
 import inc.tiptoppay.sdk.scanner.CardData
 import inc.tiptoppay.sdk.ui.dialogs.base.BasePaymentBottomSheetFragment
 import inc.tiptoppay.sdk.util.TextWatcherAdapter
@@ -192,10 +197,20 @@ internal class PaymentCardFragment :
 		binding.buttonPay.text = getString(
 			R.string.ttpsdk_text_card_pay_button,
 			String.format(
-				"%.2f " + Currency.getSymbol(paymentConfiguration!!.paymentData.currency),
+				"%.2f " + paymentConfiguration!!.paymentData.currency.symbol,
 				paymentConfiguration!!.paymentData.amount.toDouble()
 			)
 		)
+
+		if (paymentConfiguration!!.region == Region.MX) {
+
+			binding.text3dsInfo.visibility = View.VISIBLE
+			binding.button3dsInfoPopup.visibility = View.VISIBLE
+
+			binding.button3dsInfoPopup.setOnClickListener {
+				showPopupSaveCardInfo()
+			}
+		}
 
 		updatePaymentSystemIcon("")
 		updateStateButtons()
@@ -228,6 +243,20 @@ internal class PaymentCardFragment :
 
 	private fun enableButtons() {
 		binding.viewBlockButtons.visibility = View.GONE
+	}
+
+	private fun showPopupSaveCardInfo() {
+		val popupView = layoutInflater.inflate(R.layout.popup_ttpsdk_3ds_info, null)
+
+		val wid = LinearLayout.LayoutParams.WRAP_CONTENT
+		val high = LinearLayout.LayoutParams.WRAP_CONTENT
+		val focus= true
+		val popupWindow = PopupWindow(popupView, wid, high, focus)
+
+		val background = activity?.let { ContextCompat.getDrawable(it, R.drawable.ttpsdk_bg_popup) }
+		popupView.background = background
+
+		popupWindow.showAtLocation(view, Gravity.CENTER, 0, 0)
 	}
 
 	private fun isValid(): Boolean {

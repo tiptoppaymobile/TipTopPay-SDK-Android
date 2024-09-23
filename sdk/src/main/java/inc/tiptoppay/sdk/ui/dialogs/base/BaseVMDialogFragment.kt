@@ -3,6 +3,7 @@ package inc.tiptoppay.sdk.ui.dialogs.base
 import android.content.DialogInterface
 import android.os.Bundle
 import android.view.View
+import android.view.WindowManager
 import androidx.constraintlayout.widget.Constraints
 import androidx.fragment.app.DialogFragment
 import androidx.lifecycle.Observer
@@ -31,6 +32,8 @@ internal abstract class BaseVMDialogFragment<VS : BaseViewState, VM : BaseViewMo
 
 	override fun onStart() {
 		super.onStart()
+
+		dialog?.window?.clearFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND)
 
 		dialog?.window?.setLayout(
 			Constraints.LayoutParams.MATCH_PARENT,

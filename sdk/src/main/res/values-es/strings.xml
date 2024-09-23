@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <public name="tip_top_pay_sdk" type="string">TipTopPaySDK</public>
+    <string name="ttpsdk_text_splash_screen_loader">Loading</string>
+    <string name="ttpsdk_text_options_title">Elige un método de pago</string>
+    <string name="ttpsdk_text_options_card">Pago con tarjeta de débito o crédito</string>
+    <string name="ttpsdk_text_options_save_card">Guardar datos de la tarjeta</string>
+    <string name="ttpsdk_text_options_save_card_popup_1">Guardar los datos de forma segura. No es necesario volver a ingresar para compras posteriores.</string>
+    <string name="ttpsdk_text_options_save_card_popup_2">Al realizar el pago, usted acepta que se guarde el número de su tarjeta y la fecha de vencimiento. Para su comodidad, procesaremos automáticamente los cargos posteriores. Su información de la tarjeta se cifrará por seguridad.</string>
+    <string name="ttpsdk_text_options_email_checkbox">Enviar la confirmación de pago por correo electrónico</string>
+    <string name="ttpsdk_text_options_email_title">E-mail</string>
+    <string name="ttpsdk_text_options_email_error">Correo electrónico incorrecto</string>
+    <string name="ttpsdk_text_options_email_require">Inserta tu correo electrónico</string>
+    <string name="ttpsdk_text_options_card_be_saved">La información de la tarjeta se guardará para esta suscripción</string>
+
+    <string name="ttpsdk_text_card_title">Pagar con tarjeta</string>
+    <string name="ttpsdk_text_card_hint_number">Número de Tarjeta</string>
+    <string name="ttpsdk_text_card_hint_exp">Mes / Año</string>
+    <string name="ttpsdk_text_card_hint_cvv">CVV</string>
+    <string name="ttpsdk_text_card_3ds_info">Será redirigido a la página de confirmación 3DS de su banco. Favor de tener su celular a la mano</string>
+    <string name="ttpsdk_text_card_3ds_info_popup">3DS es una tecnología que garantiza la seguridad de su pago. Es posible que tenga que introducir un código que recibira por parte de su Banco via SMS o aprobar la transacción directamente en la app móvil de su banco</string>
+
+    <string name="ttpsdk_text_card_pay_button">Pay %s</string>
+
+    <string name="ttpsdk_text_process_title">Procesando el pago</string>
+    <string name="ttpsdk_text_process_title_success">Pago realizado</string>
+    <string name="ttpsdk_text_process_button_success">Volver a la tienda</string>
+    <string name="ttpsdk_text_process_title_error">Por favor, vuelve a intentarlo más</string>
+    <string name="ttpsdk_text_process_button_error">Vuelve a intentar</string>
+    <string name="ttpsdk_text_process_button_ok">OK</string>
+
+    <string name="ttpsdk_text_process_title_tinkoff_pay"></string>
+    <string name="ttpsdk_text_process_description_tinkoff_pay"></string>
+
+    <string name="ttpsdk_text_sbp_title"></string>
+    <string name="ttpsdk_text_sbp_no_banks_apps"></string>
+
+    <string name="ttpsdk_text_process_button_tinkoff_pay_sbp"></string>
+
+    <string name="ttpsdk_currency_template">%.2f\u20BD</string>
+
+    <string name="ttpsdk_error_connection">Error de conexión</string>
+    <string name="ttpsdk_error_connection_extra">Por favor, verifica tu conexión a internet</string>
+
+    <!-- ERRORS -->
+    <string name="ttpsdk_error_3001">Por favor, vuelve a intentarlo más</string>
+    <string name="ttpsdk_error_3002">Por favor, vuelve a intentarlo más</string>
+    <string name="ttpsdk_error_3003">Por favor, vuelve a intentarlo más</string>
+    <string name="ttpsdk_error_3004">Por favor, vuelve a intentarlo más</string>
+    <string name="ttpsdk_error_3005">Por favor, vuelve a intentarlo más</string>
+    <string name="ttpsdk_error_3006">Por favor, vuelve a intentarlo más</string>
+    <string name="ttpsdk_error_3007">Por favor, vuelve a intentarlo más</string>
+    <string name="ttpsdk_error_3008">Por favor, vuelve a intentarlo más</string>
+    <string name="ttpsdk_error_5001">Por favor, intenta con otra tarjeta o otro método de pago</string>
+    <string name="ttpsdk_error_5003">Por favor, intenta con otra tarjeta o otro método de pago</string>
+    <string name="ttpsdk_error_5004">Por favor, intenta con otra tarjeta o otro método de pago</string>
+    <string name="ttpsdk_error_5005">Por favor, vuelve a intentarlo más</string>
+    <string name="ttpsdk_error_5006">Asegúrate que los datos introducidos de la tarjeta son correctos o prueba con otra tarjeta</string>
+    <string name="ttpsdk_error_5007">Por favor, vuelve a intentarlo más</string>
+    <string name="ttpsdk_error_5012">La tarjeta introducida no está habilitada para pagos en línea</string>
+    <string name="ttpsdk_error_5013">El importe de la transacción es incorrecto</string>
+    <string name="ttpsdk_error_5014">Asegúrate que los datos introducidos de la tarjeta son correctos o prueba con otra tarjeta</string>
+    <string name="ttpsdk_error_5015">Asegúrate que los datos introducidos de la tarjeta son correctos o prueba con otra tarjeta</string>
+    <string name="ttpsdk_error_5019">Por favor, vuelve a intentarlo más</string>
+    <string name="ttpsdk_error_5030">Por favor, vuelve a intentarlo más</string>
+    <string name="ttpsdk_error_5031">Por favor, vuelve a intentarlo más</string>
+    <string name="ttpsdk_error_5034">Por favor, intenta con otra tarjeta o otro método de pago</string>
+    <string name="ttpsdk_error_5036">Por favor, intenta con otra tarjeta o otro método de pago</string>
+    <string name="ttpsdk_error_5041">Por favor, intenta con otra tarjeta o otro método de pago</string>
+    <string name="ttpsdk_error_5043">Por favor, intenta con otra tarjeta o otro método de pago</string>
+    <string name="ttpsdk_error_5051">Fondos insuficientes en la tarjeta</string>
+    <string name="ttpsdk_error_5054">La tarjeta ha expirado o la fecha de expiración es incorrecta</string>
+    <string name="ttpsdk_error_5057">Por favor, vuelve a intentarlo más</string>
+    <string name="ttpsdk_error_5059">Por favor, intenta con otra tarjeta o otro método de pago</string>
+    <string name="ttpsdk_error_5061">Límite de tarjeta excedido. Por favor aumente el límite o prueba con otra tarjeta</string>
+    <string name="ttpsdk_error_5062">Por favor, intenta con otra tarjeta o otro método de pago</string>
+    <string name="ttpsdk_error_5063">Tu pago no se pudo realizar, por favor intenta con otra tarjeta o contacto a tu banco</string>
+    <string name="ttpsdk_error_5065">Límite por transacción excedido. Por favor aumente el límite o prueba con otra tarjeta</string>
+    <string name="ttpsdk_error_5082">El código CVV es incorrecto</string>
+    <string name="ttpsdk_error_5091">Por favor, vuelve a intentarlo más</string>
+    <string name="ttpsdk_error_5092">Por favor, vuelve a intentarlo más</string>
+    <string name="ttpsdk_error_5096">Por favor, vuelve a intentarlo más</string>
+    <string name="ttpsdk_error_5204">Por favor, vuelve a intentarlo más</string>
+    <string name="ttpsdk_error_5206">La autorización 3-D secure fue fallida</string>
+    <string name="ttpsdk_error_5207">La autorización 3-D secure no está disponible. Por favor, vuelve a intentarlo más</string>
+    <string name="ttpsdk_error_5300">Por favor, vuelve a intentarlo más</string>
+    <string name="ttpsdk_error_3001_extra">Si el error continúa, por favor ponte en contacto con el administrador de la página</string>
+    <string name="ttpsdk_error_3002_extra">Si el error continúa, por favor ponte en contacto con el administrador de la página</string>
+    <string name="ttpsdk_error_3003_extra">Si el error continúa, por favor ponte en contacto con el administrador de la página</string>
+    <string name="ttpsdk_error_3004_extra">Si el error continúa, por favor ponte en contacto con el administrador de la página</string>
+    <string name="ttpsdk_error_3005_extra">Si el error continúa, por favor ponte en contacto con el administrador de la página</string>
+    <string name="ttpsdk_error_3006_extra">Si el error continúa, por favor ponte en contacto con el administrador de la página</string>
+    <string name="ttpsdk_error_3007_extra">Si el error continúa, por favor ponte en contacto con el administrador de la página</string>
+    <string name="ttpsdk_error_3008_extra">Si el error continúa, por favor ponte en contacto con el administrador de la página</string>
+    <string name="ttpsdk_error_5001_extra"></string>
+    <string name="ttpsdk_error_5003_extra"></string>
+    <string name="ttpsdk_error_5004_extra"></string>
+    <string name="ttpsdk_error_5005_extra">Si el error continúa, por favor intenta con otra tarjeta o otro método de pago</string>
+    <string name="ttpsdk_error_5006_extra"></string>
+    <string name="ttpsdk_error_5007_extra">Si el error continúa, por favor intenta con otra tarjeta o otro método de pago</string>
+    <string name="ttpsdk_error_5012_extra">Por favor, active los pagos electrónicos en su aplicación bancaria o intente con otra tarjeta o método de pago</string>
+    <string name="ttpsdk_error_5013_extra">Asegúrate que el importe es correcto e inténtalo de nuevo</string>
+    <string name="ttpsdk_error_5014_extra"></string>
+    <string name="ttpsdk_error_5015_extra"></string>
+    <string name="ttpsdk_error_5019_extra">Si el error continúa, por favor intenta con otra tarjeta o otro método de pago</string>
+    <string name="ttpsdk_error_5030_extra">Si el error continúa, por favor intenta con otra tarjeta o otro método de pago</string>
+    <string name="ttpsdk_error_5031_extra">Si el error continúa, por favor intenta con otra tarjeta o otro método de pago</string>
+    <string name="ttpsdk_error_5034_extra"></string>
+    <string name="ttpsdk_error_5036_extra"></string>
+    <string name="ttpsdk_error_5041_extra"></string>
+    <string name="ttpsdk_error_5043_extra"></string>
+    <string name="ttpsdk_error_5051_extra"></string>
+    <string name="ttpsdk_error_5054_extra">Asegúrate que los datos introducidos de la tarjeta son correctos o prueba con otra tarjeta</string>
+    <string name="ttpsdk_error_5057_extra">Si el error continúa, por favor intenta con otra tarjeta o otro método de pago</string>
+    <string name="ttpsdk_error_5059_extra"></string>
+    <string name="ttpsdk_error_5061_extra"></string>
+    <string name="ttpsdk_error_5062_extra"></string>
+    <string name="ttpsdk_error_5063_extra">Por favor intenta con otra tarjeta o contacto a tu banco</string>
+    <string name="ttpsdk_error_5065_extra"></string>
+    <string name="ttpsdk_error_5082_extra"></string>
+    <string name="ttpsdk_error_5091_extra">Si el error continúa, por favor intenta con otra tarjeta o otro método de pago</string>
+    <string name="ttpsdk_error_5092_extra">Si el error continúa, por favor intenta con otra tarjeta o otro método de pago</string>
+    <string name="ttpsdk_error_5096_extra">Si el error continúa, por favor intenta con otra tarjeta o otro método de pago</string>
+    <string name="ttpsdk_error_5204_extra">Si el error continúa, por favor intenta con otra tarjeta o otro método de pago</string>
+    <string name="ttpsdk_error_5206_extra">Por favor, vuelve a intentarlo más</string>
+    <string name="ttpsdk_error_5207_extra">Si el error continúa, por favor intenta con otra tarjeta o otro método de pago</string>
+    <string name="ttpsdk_error_5300_extra">Si el error continúa, por favor ponte en contacto con el administrador de la página</string>
+</resources>

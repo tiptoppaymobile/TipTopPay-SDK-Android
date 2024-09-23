@@ -10,6 +10,8 @@ import inc.tiptoppay.sdk.api.models.PaymentDataPayer
 import inc.tiptoppay.sdk.configuration.TipTopPaySDK
 import inc.tiptoppay.sdk.configuration.PaymentConfiguration
 import inc.tiptoppay.sdk.configuration.PaymentData
+import inc.tiptoppay.sdk.models.Currency
+import inc.tiptoppay.sdk.models.Region
 
 class MainActivity : BaseActivity() {
 
@@ -52,7 +54,6 @@ class MainActivity : BaseActivity() {
 		val apiUrl = binding.editApiUrl.text.toString()
 		val publicId = binding.editPublicId.text.toString()
 		val amount = binding.editAmount.text.toString()
-		val currency = binding.editCurrency.text.toString()
 		val invoiceId = binding.editInvoiceId.text.toString()
 		val description = binding.editDescription.text.toString()
 		val accountId = binding.editAccountId.text.toString()
@@ -86,7 +87,7 @@ class MainActivity : BaseActivity() {
 
 		val paymentData = PaymentData(
 			amount = amount,
-			currency = currency,
+			currency = Currency.MXN,
 			invoiceId = invoiceId,
 			description = description,
 			accountId = accountId,
@@ -97,6 +98,7 @@ class MainActivity : BaseActivity() {
 
 		val configuration = PaymentConfiguration(
 			publicId = publicId,
+			region = Region.MX,
 			paymentData = paymentData,
 			scanner = CardIOScanner(),
 			requireEmail = true,

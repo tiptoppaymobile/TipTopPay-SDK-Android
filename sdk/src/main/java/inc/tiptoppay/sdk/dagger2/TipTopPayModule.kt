@@ -30,7 +30,7 @@ class TipTopPayModule {
 }
 
 @Module
-class TipTopPayNetModule(private val publicId: String, private var apiUrl: String = Constants.baseApiUrl) {
+class TipTopPayNetModule(private val publicId: String, private var apiUrl: String) {
 	@Provides
 	@Singleton
 	fun providesHttpLoggingInterceptor(): HttpLoggingInterceptor = HttpLoggingInterceptor()
@@ -63,9 +63,6 @@ class TipTopPayNetModule(private val publicId: String, private var apiUrl: Strin
 			.readTimeout(60, TimeUnit.SECONDS)
 			.followRedirects(false)
 			.build()
-
-		if (apiUrl.isEmpty())
-			apiUrl = Constants.baseApiUrl
 
 		val retrofit = Retrofit.Builder()
 			.baseUrl(apiUrl)
