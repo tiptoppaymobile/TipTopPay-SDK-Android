@@ -1,9 +1,12 @@
 package inc.tiptoppay.sdk.models
 
+import inc.tiptoppay.sdk.api.models.InstallmentsVariant
+
 data class SDKConfiguration(
 	var publicKey: PublicKey = PublicKey(pem = null, version = null),
 	var availablePaymentMethods: AvailablePaymentMethods = AvailablePaymentMethods(),
 	var terminalConfiguration: TerminalConfiguration = TerminalConfiguration(),
+	var installmentsVariant: ArrayList<InstallmentsVariant> = ArrayList(),
 	var saveCard: Boolean? = null
 	)
 
@@ -13,7 +16,8 @@ data class PublicKey(
 )
 
 data class AvailablePaymentMethods(
-	var googlePayAvailable: Boolean = false
+	var googlePayAvailable: Boolean = false,
+	var installmentsAvailable: Boolean = false
 )
 
 data class TerminalConfiguration(

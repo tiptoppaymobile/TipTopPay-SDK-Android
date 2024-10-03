@@ -11,6 +11,13 @@ data class PaymentConfiguration(val publicId: String,
 								val paymentData: PaymentData,
 								val scanner: CardScanner?,
 								val requireEmail: Boolean = false,
-								val useDualMessagePayment: Boolean = false,
+								private val useDualMessagePayment: Boolean = false,
 								val apiUrl: String = "",
-								val testMode: Boolean = false): Parcelable
+								val testMode: Boolean = false): Parcelable {
+									fun isUseDualMessagePayment(): Boolean {
+										if (region == Region.MX) {
+											return false
+										}
+										return useDualMessagePayment
+									}
+								}

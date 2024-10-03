@@ -4,6 +4,7 @@
     <string name="ttpsdk_text_splash_screen_loader">Loading</string>
     <string name="ttpsdk_text_options_title">Choose a payment method</string>
     <string name="ttpsdk_text_options_card">Debit or credit card</string>
+    <string name="ttpsdk_text_options_installments">Pay monthly interest-free</string>
     <string name="ttpsdk_text_options_save_card">Save card</string>
     <string name="ttpsdk_text_options_save_card_popup_1">Safely store your card information for future purchases, so you don’t have to enter it again.</string>
     <string name="ttpsdk_text_options_save_card_popup_2">By making a payment, you agree to have your card number and expiration date stored. For your convenience, we will automatically process subsequent charges. Your card information will be encrypted for safety.</string>
@@ -20,6 +21,14 @@
     <string name="ttpsdk_text_card_3ds_info">You will be redirected to your bank\'s 3DS confirmation page. Please keep your phone nearby</string>
     <string name="ttpsdk_text_card_3ds_info_popup">3DS is a technology that guarantees the security of your payment. You may have to enter a code that you will receive from your bank via SMS or approve the transaction directly on your bank\'s mobile app</string>
     <string name="ttpsdk_text_card_pay_button">Pay %s</string>
+
+    <string name="ttpsdk_text_installments_title"></string>
+    <string name="ttpsdk_text_installments_error">This card is not eligible for the interest-free monthly payment option</string>
+    <string name="ttpsdk_text_installments_pay_button">Pay monthly interest-free</string>
+    <string name="ttpsdk_text_installments_list_title">Select the number of interest-free months</string>
+    <string name="ttpsdk_text_installments_list_not_selected">Interest-free months</string>
+    <string name="ttpsdk_text_installments_pay_in_full_now">Pay in full now</string>
+    <string name="ttpsdk_text_installments_interest_free_months">interest-free months</string>
 
     <string name="ttpsdk_text_process_title">Payment is being processed</string>
     <string name="ttpsdk_text_process_title_success">Payment completed</string>

@@ -2,11 +2,13 @@ package inc.tiptoppay.sdk.viewmodel
 
 import androidx.lifecycle.MutableLiveData
 import inc.tiptoppay.sdk.api.TipTopPayApi
+import inc.tiptoppay.sdk.api.models.InstallmentData
 import inc.tiptoppay.sdk.api.models.PaymentRequestBody
 import inc.tiptoppay.sdk.api.models.TipTopPayTransaction
 import inc.tiptoppay.sdk.api.models.TipTopPayTransactionResponse
 import inc.tiptoppay.sdk.configuration.PaymentData
 import inc.tiptoppay.sdk.models.ApiError
+import inc.tiptoppay.sdk.models.SDKConfiguration
 import inc.tiptoppay.sdk.ui.dialogs.PaymentProcessStatus
 import inc.tiptoppay.sdk.util.checkAndGetCorrectJsonDataString
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -16,6 +18,7 @@ import javax.inject.Inject
 internal class PaymentProcessViewModel(
 	private val paymentData: PaymentData,
 	private val cryptogram: String,
+	private val installmentsTerm: Int,
 	private val useDualMessagePayment: Boolean,
 	private val saveCard: Boolean?
 
@@ -47,6 +50,11 @@ internal class PaymentProcessViewModel(
 
 		if (saveCard != null) {
 			body.saveCard = saveCard
+		}
+
+		if (installmentsTerm > 1) {
+			body.installmentsData = InstallmentData(term = installmentsTerm)
+			body.term = installmentsTerm
 		}
 
 		if (useDualMessagePayment) {

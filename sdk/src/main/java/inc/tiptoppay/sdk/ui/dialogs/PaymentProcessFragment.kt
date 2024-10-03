@@ -32,10 +32,17 @@ internal class PaymentProcessFragment: BasePaymentDialogFragment<PaymentProcessV
 
 	companion object {
 		private const val ARG_CRYPTOGRAM = "ARG_CRYPTOGRAM"
+		private const val ARG_TERM = "ARG_TERM"
 
 		fun newInstance(cryptogram: String) = PaymentProcessFragment().apply {
 			arguments = Bundle()
 			arguments?.putString(ARG_CRYPTOGRAM, cryptogram)
+		}
+
+		fun newInstance(cryptogram: String, term: Int) = PaymentProcessFragment().apply {
+			arguments = Bundle()
+			arguments?.putString(ARG_CRYPTOGRAM, cryptogram)
+			arguments?.putInt(ARG_TERM, term)
 		}
 	}
 
@@ -63,7 +70,8 @@ internal class PaymentProcessFragment: BasePaymentDialogFragment<PaymentProcessV
 		InjectorUtils.providePaymentProcessViewModelFactory(
 			paymentConfiguration!!.paymentData,
 			cryptogram,
-			paymentConfiguration!!.useDualMessagePayment,
+			installmentsTerm,
+			paymentConfiguration!!.isUseDualMessagePayment(),
 			sdkConfig?.saveCard)
 	}
 
@@ -82,6 +90,10 @@ internal class PaymentProcessFragment: BasePaymentDialogFragment<PaymentProcessV
 
 	private val cryptogram by lazy {
 		arguments?.getString(ARG_CRYPTOGRAM) ?: ""
+	}
+
+	private val installmentsTerm by lazy {
+		arguments?.getInt(ARG_TERM) ?: 0
 	}
 
 	override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

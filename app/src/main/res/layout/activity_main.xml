@@ -56,7 +56,7 @@
             <EditText
                 android:id="@+id/edit_public_id"
                 style="@style/DemoEditText"
-                android:text="test_api_00000000000000000000002"
+                android:text="pk_36fdf1610f3bca59b7e524a307a31"
                 android:hint="test_api_00000000000000000000002" />
 
             <TextView
@@ -67,7 +67,7 @@
                 android:id="@+id/edit_amount"
                 style="@style/DemoEditText"
                 android:hint="10"
-                android:text="10" />
+                android:text="10000" />
 
             <TextView
                 style="@style/DemoTextView"

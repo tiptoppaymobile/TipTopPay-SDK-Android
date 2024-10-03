@@ -32,6 +32,7 @@ internal class PaymentOptionsFragment :
 	BasePaymentBottomSheetFragment<PaymentOptionsViewState, PaymentOptionsViewModel>() {
 	interface IPaymentOptionsFragment {
 		fun runCardPayment()
+		fun runInstallments()
 		fun runGooglePay()
 	}
 
@@ -62,7 +63,7 @@ internal class PaymentOptionsFragment :
 	override val viewModel: PaymentOptionsViewModel by viewModels {
 		InjectorUtils.providePaymentOptionsViewModelFactory(
 			paymentConfiguration!!.paymentData,
-			paymentConfiguration!!.useDualMessagePayment)
+			paymentConfiguration!!.isUseDualMessagePayment())
 	}
 
 	override fun render(state: PaymentOptionsViewState) {
@@ -71,6 +72,12 @@ internal class PaymentOptionsFragment :
 			binding.buttonGooglepay.root.visibility = View.VISIBLE
 		} else {
 			binding.buttonGooglepay.root.visibility = View.GONE
+		}
+
+		if (sdkConfig?.availablePaymentMethods?.installmentsAvailable == true) {
+			binding.buttonInstallments.visibility = View.VISIBLE
+		} else {
+			binding.buttonInstallments.visibility = View.GONE
 		}
 
 		updateWith(state.status, state.reasonCode)
@@ -155,6 +162,15 @@ internal class PaymentOptionsFragment :
 
 			val listener = requireActivity() as? IPaymentOptionsFragment
 			listener?.runCardPayment()
+			dismiss()
+		}
+
+		binding.buttonInstallments.setOnClickListener {
+			updateEmail()
+			updateSaveCard()
+
+			val listener = requireActivity() as? IPaymentOptionsFragment
+			listener?.runInstallments()
 			dismiss()
 		}
 

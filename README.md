@@ -86,7 +86,7 @@ val configuration = PaymentConfiguration(
     paymentData = paymentData, // Payment data
     scanner = CardIOScanner(), // Card scanner
     requireEmail = false, // Usage of email (false – not required, true – required)
-    useDualMessagePayment = true, // Usage of two-staged payments (true). By default is using one-staged payments (false)
+    useDualMessagePayment = true, // Usage of two-staged payments (true). By default is using one-staged payments (false). Works only for Kazakhstan (Region.KZ)
     )
 ```
 

@@ -5,7 +5,6 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
-import android.util.Log
 import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.fragment.app.FragmentActivity
@@ -22,6 +21,7 @@ import inc.tiptoppay.sdk.dagger2.TipTopPayNetModule
 import inc.tiptoppay.sdk.databinding.ActivityTtpsdkPaymentBinding
 import inc.tiptoppay.sdk.models.ApiError
 import inc.tiptoppay.sdk.models.SDKConfiguration
+import inc.tiptoppay.sdk.ui.dialogs.InstallmentsFragment
 import inc.tiptoppay.sdk.ui.dialogs.PaymentCardFragment
 import inc.tiptoppay.sdk.ui.dialogs.PaymentFinishFragmentFragment
 import inc.tiptoppay.sdk.ui.dialogs.PaymentFinishStatus
@@ -36,7 +36,7 @@ import javax.inject.Inject
 
 internal class PaymentActivity: FragmentActivity(), BasePaymentBottomSheetFragment.IPaymentFragment,
 								PaymentOptionsFragment.IPaymentOptionsFragment, PaymentCardFragment.IPaymentCardFragment,
-								PaymentProcessFragment.IPaymentProcessFragment {
+								PaymentProcessFragment.IPaymentProcessFragment, InstallmentsFragment.IInstallmentsFragment {
 
 	val SDKConfiguration: SDKConfiguration = SDKConfiguration()
 
@@ -119,6 +119,7 @@ internal class PaymentActivity: FragmentActivity(), BasePaymentBottomSheetFragme
 				if (response.success == true) {
 
 					var isGooglePayAvailable = false
+					var isInstallmentsAvailable = false
 
 					for (paymentMethod in response.model?.externalPaymentMethods!!) {
 						if (paymentMethod.type == ExternalPaymentMethods.GOOGLE_PAY) {
@@ -127,6 +128,9 @@ internal class PaymentActivity: FragmentActivity(), BasePaymentBottomSheetFragme
 								SDKConfiguration.terminalConfiguration.gPayGatewayName =
 									paymentMethod.gPayGatewayName
 							}
+						}
+						if (paymentMethod.type == ExternalPaymentMethods.INSTALLMENTS) {
+							isInstallmentsAvailable = paymentMethod.enabled!!
 						}
 					}
 
@@ -137,11 +141,36 @@ internal class PaymentActivity: FragmentActivity(), BasePaymentBottomSheetFragme
 					SDKConfiguration.terminalConfiguration.skipExpiryValidation =
 						response.model?.skipExpiryValidation
 
-					prepareGooglePay()
+					if (isInstallmentsAvailable) {
+						getInstallmentsConfiguration(paymentConfiguration?.publicId!!, paymentConfiguration?.paymentData?.amount!!)
+					} else {
+						prepareGooglePay()
+					}
 				} else {
 					Toast.makeText(this, response.message, Toast.LENGTH_SHORT).show()
 					finish()
 				}
+			}
+			.onErrorReturn {
+				onInternetConnectionError()
+			}
+			.subscribe()
+	}
+
+	private fun getInstallmentsConfiguration(publicId: String, amount: String) {
+		disposable = api.getInstallmentsConfiguration(publicId, amount)
+			.toObservable()
+			.observeOn(AndroidSchedulers.mainThread())
+			.map { response ->
+				if (response.success == true) {
+
+					if (response.model?.isCardInstallmentAvailable == true) {
+						SDKConfiguration.availablePaymentMethods.installmentsAvailable = true
+						SDKConfiguration.installmentsVariant = response.model.configuration!!
+					}
+				}
+
+				prepareGooglePay()
 			}
 			.onErrorReturn {
 				onInternetConnectionError()
@@ -192,14 +221,25 @@ internal class PaymentActivity: FragmentActivity(), BasePaymentBottomSheetFragme
 		fragment.show(supportFragmentManager, "")
 	}
 
+	override fun runInstallments() {
+		val fragment = InstallmentsFragment.newInstance()
+		fragment.show(supportFragmentManager, "")
+	}
+
 	override fun runGooglePay() {
 		GooglePayHandler.present(paymentConfiguration!!, SDKConfiguration.terminalConfiguration.gPayGatewayName,this, REQUEST_CODE_GOOGLE_PAY)
 	}
 
-	override fun onPayClicked(cryptogram: String) {
+	override fun onPayCardClicked(cryptogram: String) {
 		val fragment = PaymentProcessFragment.newInstance(cryptogram)
 		fragment.show(supportFragmentManager, "")
 	}
+
+	override fun onPayInstallmentsClicked(cryptogram: String, term: Int) {
+		val fragment = PaymentProcessFragment.newInstance(cryptogram, term)
+		fragment.show(supportFragmentManager, "")
+	}
+
 
 	override fun onPaymentFinished(transactionId: Long) {
 		setResult(Activity.RESULT_OK, Intent().apply {

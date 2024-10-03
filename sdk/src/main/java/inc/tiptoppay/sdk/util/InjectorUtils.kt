@@ -12,8 +12,8 @@ internal object InjectorUtils {
     fun providePaymentOptionsViewModelFactory(paymentData: PaymentData, useDualMessagePayment: Boolean): PaymentOptionsViewModelFactory {
         return PaymentOptionsViewModelFactory(paymentData, useDualMessagePayment)
     }
-    fun providePaymentProcessViewModelFactory(paymentData: PaymentData, cryptogram: String, useDualMessagePayment: Boolean, saveCard: Boolean?): PaymentProcessViewModelFactory {
-        return PaymentProcessViewModelFactory(paymentData, cryptogram, useDualMessagePayment, saveCard)
+    fun providePaymentProcessViewModelFactory(paymentData: PaymentData, cryptogram: String, installmentsTerm: Int, useDualMessagePayment: Boolean, saveCard: Boolean?): PaymentProcessViewModelFactory {
+        return PaymentProcessViewModelFactory(paymentData, cryptogram, installmentsTerm, useDualMessagePayment, saveCard)
     }
 
     fun providePaymentFinishViewModelFactory(status: PaymentFinishStatus,

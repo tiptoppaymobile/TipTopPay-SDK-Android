@@ -6,6 +6,7 @@ import android.util.Log
 import com.google.gson.Gson
 import com.google.gson.JsonParser
 import com.google.gson.JsonSyntaxException
+import java.security.MessageDigest
 import java.util.*
 import java.util.regex.Pattern
 
@@ -39,3 +40,13 @@ fun checkAndGetCorrectJsonDataString(json: String?): String? {
 }
 
 fun getRussianLocale() = Locale("ru", "RU")
+
+fun getSha512(input: String): String {
+	return MessageDigest.getInstance("SHA-512")
+		.digest(input.toByteArray())
+		.joinToString(separator = "") {
+			((it.toInt() and 0xff) + 0x100)
+				.toString(16)
+				.substring(1)
+		}
+}

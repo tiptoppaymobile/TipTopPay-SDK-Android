@@ -9,4 +9,5 @@ data class TipTopPayBinInfoResponse(
 
 data class TipTopPayBinInfo(
 		@SerializedName("LogoUrl") val logoUrl: String?,
-		@SerializedName("BankName") val bankName: String?)
+		@SerializedName("BankName") val bankName: String?,
+		@SerializedName("IsCardAllowed") val isCardAllowed: Boolean = false)

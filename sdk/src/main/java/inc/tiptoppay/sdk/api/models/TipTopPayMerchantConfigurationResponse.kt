@@ -32,6 +32,7 @@ data class ExternalPaymentMethods(
 		val DOLYAME = 9
 		val MTS_PAY = 10
 		val SOM = 11
+		val INSTALLMENTS = 16
 	}
 }
 data class Features(

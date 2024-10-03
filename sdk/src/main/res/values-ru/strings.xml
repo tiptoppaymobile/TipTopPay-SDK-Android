@@ -4,6 +4,7 @@
     <string name="ttpsdk_text_splash_screen_loader">Загружаем способы оплаты</string>
     <string name="ttpsdk_text_options_title">Выберите способ оплаты</string>
     <string name="ttpsdk_text_options_card">Банковская карта</string>
+    <string name="ttpsdk_text_options_installments"></string>
     <string name="ttpsdk_text_options_save_card">Сохранить карту</string>
     <string name="ttpsdk_text_options_save_card_popup_1">Нажимая на чек-бокс, вы соглашаетесь с тем, что данные вашей карты сохранятся. Это означает, что при повторной оплате вам не надо будет вводить платежные реквизиты заново.</string>
     <string name="ttpsdk_text_options_save_card_popup_2">При этом мы не сможем проводить никакие операции по вашей карте без вашего согласия.</string>
@@ -20,6 +21,14 @@
     <string name="ttpsdk_text_card_3ds_info"></string>
     <string name="ttpsdk_text_card_3ds_info_popup"></string>
     <string name="ttpsdk_text_card_pay_button">Оплатить %s</string>
+
+    <string name="ttpsdk_text_installments_title"></string>
+    <string name="ttpsdk_text_installments_error"></string>
+    <string name="ttpsdk_text_installments_pay_button"></string>
+    <string name="ttpsdk_text_installments_list_title"></string>
+    <string name="ttpsdk_text_installments_list_not_selected"></string>
+    <string name="ttpsdk_text_installments_pay_in_full_now"></string>
+    <string name="ttpsdk_text_installments_interest_free_months"></string>
 
     <string name="ttpsdk_text_process_title">Оплата в процессе</string>
     <string name="ttpsdk_text_process_title_success">Оплата прошла успешно</string>

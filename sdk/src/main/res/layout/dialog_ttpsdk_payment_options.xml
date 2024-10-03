@@ -44,6 +44,16 @@
             android:layout_height="wrap_content"
             android:text="@string/ttpsdk_text_options_card"/>
 
+        <Button
+            android:id="@+id/button_installments"
+            style="@style/ttpsdk_ButtonBlue"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/ttpsdk_text_options_installments"
+            android:background="@drawable/ttpsdk_bg_rounded_installments_button"
+            android:visibility="gone"/>
+
         <include
             android:id="@+id/button_googlepay"
             layout="@layout/layout_googlepay_button"
@@ -161,7 +171,7 @@
         android:textColor="#8c949f"
         android:textSize="13sp"
         android:textStyle="normal"
-        android:visibility="gone"
+        android:visibility="visible"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/text_email_require" />
 
@@ -172,7 +182,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginBottom="-2dp"
         android:src="@drawable/ttpsdk_ic_question"
-        android:visibility="gone"
+        android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="@id/text_card_be_saved"
         app:layout_constraintStart_toEndOf="@id/text_card_be_saved" />
 

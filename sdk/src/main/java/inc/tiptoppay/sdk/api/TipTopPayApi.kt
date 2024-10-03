@@ -25,6 +25,11 @@ class TipTopPayApi @Inject constructor(private val apiService: TipTopPayApiServi
 			.subscribeOn(Schedulers.io())
 	}
 
+	fun getInstallmentsConfiguration(publicId: String, amount: String): Single<TipTopPayInstallmentsConfigurationResponse> {
+		return apiService.getInstallmentsConfiguration(publicId, amount)
+			.subscribeOn(Schedulers.io())
+	}
+
 	fun charge(requestBody: PaymentRequestBody): Single<TipTopPayTransactionResponse> {
 		return apiService.charge(requestBody)
 			.subscribeOn(Schedulers.io())
@@ -73,4 +78,10 @@ class TipTopPayApi @Inject constructor(private val apiService: TipTopPayApiServi
 					.map { it.binInfo ?: TipTopPayBinInfo("", "") }
 					.onErrorReturn { TipTopPayBinInfo("", "") }
 		}
+
+	fun getBinInfo(queryMap: Map<String, String>): Single<TipTopPayBinInfoResponse> {
+		return apiService.getBinInfo(queryMap)
+			.subscribeOn(Schedulers.io())
+	}
+
 }

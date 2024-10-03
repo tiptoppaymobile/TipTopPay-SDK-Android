@@ -9,48 +9,52 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.PopupWindow
+import androidx.appcompat.widget.PopupMenu
 import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import inc.tiptoppay.sdk.R
 import inc.tiptoppay.sdk.card.Card
 import inc.tiptoppay.sdk.card.CardType
-import inc.tiptoppay.sdk.databinding.DialogTtpsdkPaymentCardBinding
+import inc.tiptoppay.sdk.databinding.DialogTtpsdkInstallmentsBinding
 import inc.tiptoppay.sdk.models.Region
 import inc.tiptoppay.sdk.scanner.CardData
 import inc.tiptoppay.sdk.ui.dialogs.base.BasePaymentBottomSheetFragment
 import inc.tiptoppay.sdk.util.TextWatcherAdapter
 import inc.tiptoppay.sdk.util.hideKeyboard
-import inc.tiptoppay.sdk.viewmodel.PaymentCardViewModel
-import inc.tiptoppay.sdk.viewmodel.PaymentCardViewState
+import inc.tiptoppay.sdk.viewmodel.InstallmentsViewModel
+import inc.tiptoppay.sdk.viewmodel.InstallmentsViewState
 import ru.tinkoff.decoro.MaskDescriptor
 import ru.tinkoff.decoro.parser.UnderscoreDigitSlotsParser
 import ru.tinkoff.decoro.watchers.DescriptorFormatWatcher
 
-internal class PaymentCardFragment :
-	BasePaymentBottomSheetFragment<PaymentCardViewState, PaymentCardViewModel>() {
-	interface IPaymentCardFragment {
-		fun onPayCardClicked(cryptogram: String)
+internal class InstallmentsFragment :
+	BasePaymentBottomSheetFragment<InstallmentsViewState, InstallmentsViewModel>() {
+	interface IInstallmentsFragment {
+		fun onPayInstallmentsClicked(cryptogram: String, term: Int)
 	}
 
 	companion object {
 		const val REQUEST_CODE_SCANNER = 1
 
-		fun newInstance() = PaymentCardFragment().apply {
+		fun newInstance() = InstallmentsFragment().apply {
 			arguments = Bundle()
 		}
 	}
 
-	private var _binding: DialogTtpsdkPaymentCardBinding? = null
+	private var _binding: DialogTtpsdkInstallmentsBinding? = null
 
 	private val binding get() = _binding!!
+
+	private var isCardAllowed = false
+	private var installmentTerm = 0
 
 	override fun onCreateView(
 		inflater: LayoutInflater,
 		container: ViewGroup?,
 		savedInstanceState: Bundle?
 	): View? {
-		_binding = DialogTtpsdkPaymentCardBinding.inflate(inflater, container, false)
+		_binding = DialogTtpsdkInstallmentsBinding.inflate(inflater, container, false)
 		val view = binding.root
 		return view
 	}
@@ -60,10 +64,21 @@ internal class PaymentCardFragment :
 		_binding = null
 	}
 
-	override val viewModel: PaymentCardViewModel by viewModels()
+	override val viewModel: InstallmentsViewModel by viewModels()
 
-	override fun render(state: PaymentCardViewState) {
+	override fun render(state: InstallmentsViewState) {
 
+		isCardAllowed = state.isCardAllowed
+
+		if (binding.editCardNumber.text.toString().length >= 6) {
+			if (isCardAllowed) {
+				binding.llNotInstalments.visibility = View.GONE
+			} else {
+				binding.llNotInstalments.visibility = View.VISIBLE
+			}
+		}
+
+		updateStateButtons()
 	}
 
 	private val cardNumberFormatWatcher by lazy {
@@ -108,6 +123,12 @@ internal class PaymentCardFragment :
 				} else {
 					binding.tilCardCvv.visibility = View.VISIBLE
 				}
+
+				viewModel.getBinInfo(
+					paymentConfiguration?.publicId!!,
+					cardNumber,
+					paymentConfiguration!!.paymentData.amount,
+					paymentConfiguration!!.paymentData.currency.code)
 
 				updatePaymentSystemIcon(cardNumber)
 				updateStateButtons()
@@ -180,8 +201,8 @@ internal class PaymentCardFragment :
 
 			if (isValid() && cryptogram != null) {
 
-				val listener = requireActivity() as? IPaymentCardFragment
-				listener?.onPayCardClicked(cryptogram)
+				val listener = requireActivity() as? IInstallmentsFragment
+				listener?.onPayInstallmentsClicked(cryptogram, installmentTerm)
 				dismiss()
 			}
 		}
@@ -193,13 +214,12 @@ internal class PaymentCardFragment :
 			}
 		}
 
-		binding.buttonPay.text = getString(
-			R.string.ttpsdk_text_card_pay_button,
+		binding.textTitle.text =
 			String.format(
 				"%.2f " + paymentConfiguration!!.paymentData.currency.symbol,
 				paymentConfiguration!!.paymentData.amount.toDouble()
 			)
-		)
+
 
 		if (paymentConfiguration!!.region == Region.MX) {
 
@@ -213,6 +233,38 @@ internal class PaymentCardFragment :
 
 		updatePaymentSystemIcon("")
 		updateStateButtons()
+
+		binding.editInstallments.setOnClickListener {
+
+			val installmentsMenu = PopupMenu(requireContext(), binding.editInstallments)
+
+			installmentsMenu.menu.add(0, 1, 0, String.format(
+				"%.2f " + paymentConfiguration!!.paymentData.currency.symbol,
+				paymentConfiguration!!.paymentData.amount.toDouble()
+			) + " " + getString(R.string.ttpsdk_text_installments_pay_in_full_now))
+
+			for (installmentsVariant in sdkConfig?.installmentsVariant!!) {
+
+				var title = (String.format(
+						"%.2f " + paymentConfiguration!!.paymentData.currency.symbol,
+						installmentsVariant.monthlyPayment)
+						+ " х "
+						+ installmentsVariant.term
+						+ " "
+						+ getString(R.string.ttpsdk_text_installments_interest_free_months))
+
+				installmentsMenu.menu.add(0, installmentsVariant.term, 0, title)
+			}
+
+			installmentsMenu.setOnMenuItemClickListener { item ->
+				binding.editInstallments.setText(item.title)
+				installmentTerm = item.itemId
+				updateStateButtons()
+				true
+			}
+
+			installmentsMenu.show()
+		}
 	}
 
 	private fun updatePaymentSystemIcon(cardNumber: String) {
@@ -229,7 +281,7 @@ internal class PaymentCardFragment :
 	}
 
 	private fun updateStateButtons() {
-		if (isValid()) {
+		if (isValid() && isCardAllowed) {
 			enableButtons()
 		} else {
 			disableButtons()
@@ -263,12 +315,12 @@ internal class PaymentCardFragment :
 		val cardNumberIsValid = Card.isValidNumber(cardNumber)
 		val cardExpIsValid = Card.isValidExpDate(binding.editCardExp.text.toString(), sdkConfig?.terminalConfiguration?.skipExpiryValidation)
 		val cardCvvIsValid = Card.isValidCvv(cardNumber, binding.editCardCvv.text.toString())
-
+		val installmentPeriodIsValid = installmentTerm > 0
 //		errorMode(!cardNumberIsValid, binding.editCardNumber)
 //		errorMode(!cardExpIsValid, binding.editCardExp)
 //		errorMode(!cardCvvIsValid, binding.editCardCvv)
 
-		return cardNumberIsValid && cardExpIsValid && cardCvvIsValid
+		return cardNumberIsValid && cardExpIsValid && cardCvvIsValid && installmentPeriodIsValid
 	}
 
 	private fun updateWithCardData(cardData: CardData) {

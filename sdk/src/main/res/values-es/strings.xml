@@ -4,6 +4,7 @@
     <string name="ttpsdk_text_splash_screen_loader">Loading</string>
     <string name="ttpsdk_text_options_title">Elige un método de pago</string>
     <string name="ttpsdk_text_options_card">Pago con tarjeta de débito o crédito</string>
+    <string name="ttpsdk_text_options_installments">Pagar en meses sin intereses</string>
     <string name="ttpsdk_text_options_save_card">Guardar datos de la tarjeta</string>
     <string name="ttpsdk_text_options_save_card_popup_1">Guardar los datos de forma segura. No es necesario volver a ingresar para compras posteriores.</string>
     <string name="ttpsdk_text_options_save_card_popup_2">Al realizar el pago, usted acepta que se guarde el número de su tarjeta y la fecha de vencimiento. Para su comodidad, procesaremos automáticamente los cargos posteriores. Su información de la tarjeta se cifrará por seguridad.</string>
@@ -19,8 +20,15 @@
     <string name="ttpsdk_text_card_hint_cvv">CVV</string>
     <string name="ttpsdk_text_card_3ds_info">Será redirigido a la página de confirmación 3DS de su banco. Favor de tener su celular a la mano</string>
     <string name="ttpsdk_text_card_3ds_info_popup">3DS es una tecnología que garantiza la seguridad de su pago. Es posible que tenga que introducir un código que recibira por parte de su Banco via SMS o aprobar la transacción directamente en la app móvil de su banco</string>
-
     <string name="ttpsdk_text_card_pay_button">Pay %s</string>
+
+    <string name="ttpsdk_text_installments_title"></string>
+    <string name="ttpsdk_text_installments_error">Tu tarjeta no aplica para meses sin intereses</string>
+    <string name="ttpsdk_text_installments_pay_button">Pagar en meses sin intereses</string>
+    <string name="ttpsdk_text_installments_list_title">Selecciana los meses sin intereses</string>
+    <string name="ttpsdk_text_installments_list_not_selected">Messes sin intereses</string>
+    <string name="ttpsdk_text_installments_pay_in_full_now">Paga en total ahora</string>
+    <string name="ttpsdk_text_installments_interest_free_months">meses sin intereses</string>
 
     <string name="ttpsdk_text_process_title">Procesando el pago</string>
     <string name="ttpsdk_text_process_title_success">Pago realizado</string>

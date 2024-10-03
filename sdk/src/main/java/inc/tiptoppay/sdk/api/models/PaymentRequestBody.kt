@@ -14,4 +14,10 @@ data class PaymentRequestBody(
 	@SerializedName("Payer") val payer: PaymentDataPayer? = null, // Доп. поле, куда передается информация о плательщике. Используйте следующие параметры: FirstName, LastName, MiddleName, Birth, Street, Address, City, Country, Phone, Postcode
 	@SerializedName("JsonData") val jsonData: String? = null, //"{\"age\":27,\"name\":\"Ivan\",\"phone\":\"+79998881122\"}"  Любые другие данные, которые будут связаны с транзакцией (необязательный)
 	@SerializedName("SaveCard") var saveCard: Boolean? = null,
+	@SerializedName("InstallmentData") var installmentsData: InstallmentData? = null,
+	@SerializedName("Term") var term: Int? = null,
 	@SerializedName("Scenario") val scenario: Int = 7)
+
+data class InstallmentData(
+	@SerializedName("Term") val term: Int
+)
