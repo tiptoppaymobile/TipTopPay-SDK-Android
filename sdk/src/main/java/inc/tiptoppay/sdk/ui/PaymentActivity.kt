@@ -94,6 +94,13 @@ internal class PaymentActivity: FragmentActivity(), BasePaymentBottomSheetFragme
 		getPublicKey()
 	}
 
+	override fun onDestroy() {
+		super.onDestroy()
+
+		disposable?.dispose()
+		disposable = null
+	}
+
 	private fun getPublicKey() {
 		disposable = api.getPublicKey()
 			.toObservable()
