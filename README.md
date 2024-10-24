@@ -230,9 +230,14 @@ class CardIOScanner: CardScanner() {
 
 ### Update history:
 
+#### 1.0.6
+* Added cash payments for MX region
+
+#### 1.0.4
+* Added installments payments for MX region
+
 #### 1.0.3
 * Added region and localization
-
 
 #### 1.0.2
 * Added customer’s notification at saving a card

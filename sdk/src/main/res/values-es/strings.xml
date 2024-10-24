@@ -13,6 +13,7 @@
     <string name="ttpsdk_text_options_email_error">Correo electrónico incorrecto</string>
     <string name="ttpsdk_text_options_email_require">Inserta tu correo electrónico</string>
     <string name="ttpsdk_text_options_card_be_saved">La información de la tarjeta se guardará para esta suscripción</string>
+    <string name="ttpsdk_text_cash_min_hint">Pago en efectivo, solo disponible en ordenes mayores a</string>
 
     <string name="ttpsdk_text_card_title">Pagar con tarjeta</string>
     <string name="ttpsdk_text_card_hint_number">Número de Tarjeta</string>
@@ -29,6 +30,13 @@
     <string name="ttpsdk_text_installments_list_not_selected">Messes sin intereses</string>
     <string name="ttpsdk_text_installments_pay_in_full_now">Paga en total ahora</string>
     <string name="ttpsdk_text_installments_interest_free_months">meses sin intereses</string>
+
+    <string name="ttpsdk_text_cash_name">Nombre</string>
+    <string name="ttpsdk_text_cash_save_barcode">¡Guarda el código de barras! Este se abrirá en una pagina independiente.</string>
+    <string name="ttpsdk_text_cash_pay_with">Paga en</string>
+    <string name="ttpsdk_text_cash_10_stores">+10 Tiendas</string>
+    <string name="ttpsdk_text_cash_convenience_store">Tienda de conveniencia</string>
+    <string name="ttpsdk_text_cash_store_not_available">No disponible por el momento, por favor utilice otro método de pago</string>
 
     <string name="ttpsdk_text_process_title">Procesando el pago</string>
     <string name="ttpsdk_text_process_title_success">Pago realizado</string>

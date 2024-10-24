@@ -54,6 +54,73 @@
             android:background="@drawable/ttpsdk_bg_rounded_installments_button"
             android:visibility="gone"/>
 
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/layont_button_cash"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+            <LinearLayout
+                android:id="@+id/button_cash"
+                style="@style/ttpsdk_ButtonBlue"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/ttpsdk_bg_rounded_cash_button"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="28dp"
+                    android:src="@drawable/ttpsdk_cash_oxxo_logo"/>
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="28dp"
+                    android:layout_marginStart="6dp"
+                    android:src="@drawable/ttpsdk_cash_7eleven_logo"/>
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="28dp"
+                    android:layout_marginStart="6dp"
+                    android:src="@drawable/ttpsdk_cash_wallmart_logo"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="6dp"
+                    android:fontFamily="@font/sf_pro_text_regular"
+                    android:letterSpacing="0.01"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="14sp"
+                    android:text="@string/ttpsdk_text_cash_10_stores"/>
+            </LinearLayout>
+
+            <View
+                android:id="@+id/view_block_cash"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                style="@style/ttpsdk_BlockButtonView"
+                app:layout_constraintBottom_toBottomOf="@id/button_cash"
+                app:layout_constraintEnd_toEndOf="@id/button_cash"
+                app:layout_constraintStart_toStartOf="@id/button_cash"
+                app:layout_constraintTop_toTopOf="@id/button_cash"
+                android:visibility="gone"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <TextView
+            android:id="@+id/text_cash_need_more"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:textSize="11sp"
+            android:text="@string/ttpsdk_text_cash_min_hint"
+            android:gravity="center"
+            android:visibility="gone"/>
+
         <include
             android:id="@+id/button_googlepay"
             layout="@layout/layout_googlepay_button"
@@ -171,7 +238,7 @@
         android:textColor="#8c949f"
         android:textSize="13sp"
         android:textStyle="normal"
-        android:visibility="visible"
+        android:visibility="invisible"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/text_email_require" />
 
@@ -182,7 +249,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginBottom="-2dp"
         android:src="@drawable/ttpsdk_ic_question"
-        android:visibility="visible"
+        android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="@id/text_card_be_saved"
         app:layout_constraintStart_toEndOf="@id/text_card_be_saved" />
 

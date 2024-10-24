@@ -17,7 +17,9 @@ data class MerchantConfiguration(
 data class ExternalPaymentMethods(
 	@SerializedName("Type") val type: Int?,
 	@SerializedName("Enabled") val enabled: Boolean?,
-	@SerializedName("GPayGatewayName") val gPayGatewayName: String?
+	@SerializedName("GPayGatewayName") val gPayGatewayName: String?,
+	@SerializedName("MinAmount") val cashMinAmount: Int?,
+	@SerializedName("CashMethods") val cashMethods: ArrayList<Int>?
 ) {
 	companion object {
 		val APPLE_PAY = 0
@@ -32,6 +34,7 @@ data class ExternalPaymentMethods(
 		val DOLYAME = 9
 		val MTS_PAY = 10
 		val SOM = 11
+		val CASH = 14
 		val INSTALLMENTS = 16
 	}
 }

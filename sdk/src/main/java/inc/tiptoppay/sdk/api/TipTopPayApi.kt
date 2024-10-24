@@ -84,4 +84,9 @@ class TipTopPayApi @Inject constructor(private val apiService: TipTopPayApiServi
 			.subscribeOn(Schedulers.io())
 	}
 
+	fun altpayPay(requestBody: AltpayPayRequestBody): Single<AltpayPayTransactionResponse> {
+		return apiService.altpayPay(requestBody)
+			.subscribeOn(Schedulers.io())
+	}
+
 }

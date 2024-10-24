@@ -21,7 +21,7 @@ internal enum class PaymentFinishStatus {
 	Failed;
 }
 
-internal class PaymentFinishFragmentFragment: BasePaymentDialogFragment<PaymentFinishViewState, PaymentFinishViewModel>() {
+internal class PaymentFinishFragment: BasePaymentDialogFragment<PaymentFinishViewState, PaymentFinishViewModel>() {
 	interface IPaymentFinishFragment {
 		fun finishPayment()
 		fun retryPayment()
@@ -34,19 +34,19 @@ internal class PaymentFinishFragmentFragment: BasePaymentDialogFragment<PaymentF
 		private const val ARG_REASON_CODE = "arg_reason_code"
 		private const val ARG_RETRY_PAYMENT = "arg_retry_payment"
 
-		fun newInstance(status: PaymentFinishStatus) = PaymentFinishFragmentFragment().apply {
+		fun newInstance(status: PaymentFinishStatus) = PaymentFinishFragment().apply {
 			arguments = Bundle()
 			arguments?.putString(ARG_STATUS, status.toString())
 		}
 
-		fun newInstance(status: PaymentFinishStatus, reasonCode: String, retryPayment: Boolean) = PaymentFinishFragmentFragment().apply {
+		fun newInstance(status: PaymentFinishStatus, reasonCode: String, retryPayment: Boolean) = PaymentFinishFragment().apply {
 			arguments = Bundle()
 			arguments?.putString(ARG_STATUS, status.toString())
 			arguments?.putString(ARG_REASON_CODE, reasonCode)
 			arguments?.putBoolean(ARG_RETRY_PAYMENT, retryPayment)
 		}
 
-		fun newInstance(status: PaymentFinishStatus, transaction: TipTopPayTransaction, reasonCode: String, retryPayment: Boolean) = PaymentFinishFragmentFragment().apply {
+		fun newInstance(status: PaymentFinishStatus, transaction: TipTopPayTransaction, reasonCode: String, retryPayment: Boolean) = PaymentFinishFragment().apply {
 			arguments = Bundle()
 			arguments?.putString(ARG_STATUS, status.toString())
 			arguments?.putParcelable(ARG_TRANSACTION, transaction)
@@ -149,7 +149,6 @@ internal class PaymentFinishFragmentFragment: BasePaymentDialogFragment<PaymentF
 						context?.let { ApiError.getErrorDescription(it, reasonCode) }
 					binding.textDescription.text =
 						context?.let { ApiError.getErrorDescriptionExtra(it, reasonCode) }
-
 				if (retryPayment) {
 					binding.buttonFinish.setText(R.string.ttpsdk_text_process_button_error)
 					binding.buttonFinish.setOnClickListener {

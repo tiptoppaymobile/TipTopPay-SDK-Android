@@ -15,4 +15,5 @@ data class PaymentDataPayer(
 	@SerializedName("City") var city: String? = null,
 	@SerializedName("Country") var country: String? = null,
 	@SerializedName("Phone") var phone: String? = null,
-	@SerializedName("Postcode") var postcode: String? = null) : Parcelable
+	@SerializedName("Postcode") var postcode: String? = null,
+	@SerializedName("Email") var email: String? = null) : Parcelable

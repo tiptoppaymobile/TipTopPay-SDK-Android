@@ -7,6 +7,8 @@ data class SDKConfiguration(
 	var availablePaymentMethods: AvailablePaymentMethods = AvailablePaymentMethods(),
 	var terminalConfiguration: TerminalConfiguration = TerminalConfiguration(),
 	var installmentsVariant: ArrayList<InstallmentsVariant> = ArrayList(),
+	var cashMinAmount: Int = 0,
+	var cashMethods: ArrayList<Int> = ArrayList(),
 	var saveCard: Boolean? = null
 	)
 
@@ -17,7 +19,8 @@ data class PublicKey(
 
 data class AvailablePaymentMethods(
 	var googlePayAvailable: Boolean = false,
-	var installmentsAvailable: Boolean = false
+	var installmentsAvailable: Boolean = false,
+	var cashAvailable: Boolean = false
 )
 
 data class TerminalConfiguration(

@@ -13,6 +13,8 @@
     <string name="ttpsdk_text_options_email_error">Incorrect e-mail</string>
     <string name="ttpsdk_text_options_email_require">To complete the payment please provide E-mail</string>
     <string name="ttpsdk_text_options_card_be_saved">Your сard information will be saved for this subscription</string>
+    <string name="ttpsdk_text_cash_min_hint">Cash payments available for orders higher over</string>
+
 
     <string name="ttpsdk_text_card_title">Pay by card</string>
     <string name="ttpsdk_text_card_hint_number">Card number</string>
@@ -29,6 +31,13 @@
     <string name="ttpsdk_text_installments_list_not_selected">Interest-free months</string>
     <string name="ttpsdk_text_installments_pay_in_full_now">Pay in full now</string>
     <string name="ttpsdk_text_installments_interest_free_months">interest-free months</string>
+
+    <string name="ttpsdk_text_cash_name">Name</string>
+    <string name="ttpsdk_text_cash_save_barcode">Save the barcode! It will open in a separate tab.</string>
+    <string name="ttpsdk_text_cash_pay_with">Pay with</string>
+    <string name="ttpsdk_text_cash_10_stores">+10 Stores</string>
+    <string name="ttpsdk_text_cash_convenience_store">Convenience Store</string>
+    <string name="ttpsdk_text_cash_store_not_available">Not available now, please use another method</string>
 
     <string name="ttpsdk_text_process_title">Payment is being processed</string>
     <string name="ttpsdk_text_process_title_success">Payment completed</string>

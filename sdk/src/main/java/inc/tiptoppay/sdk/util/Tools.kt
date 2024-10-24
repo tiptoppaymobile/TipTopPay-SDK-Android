@@ -1,5 +1,7 @@
 package inc.tiptoppay.sdk.util
 
+import android.content.Context
+import android.os.Build
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
@@ -7,8 +9,8 @@ import com.google.gson.Gson
 import com.google.gson.JsonParser
 import com.google.gson.JsonSyntaxException
 import java.security.MessageDigest
-import java.util.*
-import java.util.regex.Pattern
+import java.util.Locale
+
 
 open class TextWatcherAdapter: TextWatcher {
 	override fun afterTextChanged(s: Editable?) {}
@@ -16,6 +18,13 @@ open class TextWatcherAdapter: TextWatcher {
 	override fun beforeTextChanged(s: CharSequence?, p1: Int, p2: Int, p3: Int) {}
 
 	override fun onTextChanged(s: CharSequence?, p1: Int, p2: Int, p3: Int) {}
+}
+
+fun payerNameIsValid(name: String?): Boolean {
+	if (name.isNullOrBlank()) {
+		return false
+	}
+	return true
 }
 
 fun emailIsValid(email: String?): Boolean {
@@ -49,4 +58,12 @@ fun getSha512(input: String): String {
 				.toString(16)
 				.substring(1)
 		}
+}
+
+fun getCurrentLocale(context: Context): Locale {
+	return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+		context.resources.configuration.locales[0]
+	} else {
+		context.resources.configuration.locale
+	}
 }

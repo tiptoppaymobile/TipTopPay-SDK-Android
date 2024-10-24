@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/root"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="bottom"
+    android:paddingStart="20dp"
+    android:paddingEnd="20dp"
+    android:paddingBottom="16dp">
+
+    <ImageView
+        android:id="@+id/image_drag_handle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:src="@drawable/ttpsdk_drag_handle"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/text_title"
+        style="@style/ttpsdk_TextTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text=""
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/image_drag_handle" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/til_name"
+        style="@style/ttpsdk_TextInputLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/text_title">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edit_name"
+            style="@style/ttpsdk_TextInputEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/ttpsdk_text_cash_name"
+            android:imeOptions="actionNext"
+            android:inputType="textPersonName"
+            android:nextFocusDown="@id/edit_email" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/til_email"
+        style="@style/ttpsdk_TextInputLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:hint="@string/ttpsdk_text_options_email_title"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/til_name">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edit_email"
+            style="@style/ttpsdk_TextInputEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:imeOptions="actionDone"
+            android:inputType="textEmailAddress"
+            android:maxLines="1" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <TextView
+        android:id="@+id/text_save_barcode"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/ttpsdk_text_cash_save_barcode"
+        android:textColor="#0b1e46"
+        android:textSize="14sp"
+        android:textStyle="normal"
+        android:fontFamily="@font/sf_pro_text_regular"
+        android:letterSpacing="-0.01"
+        android:lineSpacingExtra="5sp"
+        android:padding="8dp"
+        android:drawablePadding="8dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/til_email"
+        android:drawableStart="@drawable/ttpsdk_ic_barcode_save_dot"
+        android:background="@drawable/ttpsdk_bg_rounded_barcode_hint"/>
+
+    <TextView
+        android:id="@+id/text_pay_with"
+        style="@style/ttpsdk_TextTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/ttpsdk_text_cash_pay_with"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/text_save_barcode" />
+
+    <LinearLayout
+        android:id="@+id/ll_for_buttons"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/text_pay_with">
+
+
+
+    </LinearLayout>
+
+    <View
+        android:id="@+id/view_block_buttons"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@color/ttpsdk_white"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:clickable="true"
+        android:visibility="visible"
+        android:alpha="0.5"
+        app:layout_constraintBottom_toBottomOf="@id/ll_for_buttons"
+        app:layout_constraintEnd_toEndOf="@id/ll_for_buttons"
+        app:layout_constraintStart_toStartOf="@id/ll_for_buttons"
+        app:layout_constraintTop_toTopOf="@id/ll_for_buttons" />
+
+    <ImageView
+        android:layout_width="210dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/ttpsdk_margin_big"
+        android:src="@drawable/ttpsdk_secured_logo"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/ll_for_buttons" />
+</androidx.constraintlayout.widget.ConstraintLayout>

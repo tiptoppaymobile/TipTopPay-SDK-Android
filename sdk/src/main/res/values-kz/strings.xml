@@ -13,6 +13,7 @@
     <string name="ttpsdk_text_options_email_error">Некорректный e-mail</string>
     <string name="ttpsdk_text_options_email_require">Для оплаты введите E-mail</string>
     <string name="ttpsdk_text_options_card_be_saved">При оплате данные вашей карты сохранятся</string>
+    <string name="ttpsdk_text_cash_min_hint"></string>
 
     <string name="ttpsdk_text_card_title">Оплата картой</string>
     <string name="ttpsdk_text_card_hint_number">Номер карты</string>
@@ -29,6 +30,13 @@
     <string name="ttpsdk_text_installments_list_not_selected"></string>
     <string name="ttpsdk_text_installments_pay_in_full_now"></string>
     <string name="ttpsdk_text_installments_interest_free_months"></string>
+
+    <string name="ttpsdk_text_cash_name"></string>
+    <string name="ttpsdk_text_cash_save_barcode"></string>
+    <string name="ttpsdk_text_cash_pay_with"></string>
+    <string name="ttpsdk_text_cash_10_stores"></string>
+    <string name="ttpsdk_text_cash_convenience_store"></string>
+    <string name="ttpsdk_text_cash_store_not_available"></string>
 
     <string name="ttpsdk_text_process_title">Оплата в процессе</string>
     <string name="ttpsdk_text_process_title_success">Оплата прошла успешно</string>

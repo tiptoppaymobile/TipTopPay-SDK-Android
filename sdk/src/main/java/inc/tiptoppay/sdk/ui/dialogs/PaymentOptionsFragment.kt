@@ -15,6 +15,7 @@ import com.google.android.material.checkbox.MaterialCheckBox
 import inc.tiptoppay.sdk.R
 import inc.tiptoppay.sdk.databinding.DialogTtpsdkPaymentOptionsBinding
 import inc.tiptoppay.sdk.models.ApiError
+import inc.tiptoppay.sdk.models.SDKConfiguration
 import inc.tiptoppay.sdk.ui.PaymentActivity
 import inc.tiptoppay.sdk.ui.dialogs.base.BasePaymentBottomSheetFragment
 import inc.tiptoppay.sdk.util.InjectorUtils
@@ -33,6 +34,7 @@ internal class PaymentOptionsFragment :
 	interface IPaymentOptionsFragment {
 		fun runCardPayment()
 		fun runInstallments()
+		fun runCash()
 		fun runGooglePay()
 	}
 
@@ -80,6 +82,12 @@ internal class PaymentOptionsFragment :
 			binding.buttonInstallments.visibility = View.GONE
 		}
 
+		if (sdkConfig?.availablePaymentMethods?.cashAvailable == true) {
+			binding.layontButtonCash.visibility = View.VISIBLE
+		} else {
+			binding.buttonCash.visibility = View.GONE
+		}
+
 		updateWith(state.status, state.reasonCode)
 	}
 
@@ -108,6 +116,17 @@ internal class PaymentOptionsFragment :
 		super.onViewCreated(view, savedInstanceState)
 
 		activity().component.inject(viewModel)
+
+		if (sdkConfig?.cashMinAmount != null) {
+			if (sdkConfig?.cashMinAmount!!.toFloat() > paymentConfiguration?.paymentData?.amount?.toFloat() ?: 0.0f) {
+				binding.viewBlockCash.visibility = View.VISIBLE
+				binding.textCashNeedMore.visibility = View.VISIBLE
+				binding.textCashNeedMore.text = getString(R.string.ttpsdk_text_cash_min_hint) + " " + String.format(
+					"%.2f " + paymentConfiguration!!.paymentData.currency.symbol,
+					sdkConfig?.cashMinAmount!!.toDouble()
+				)
+			}
+		}
 
 		checkSaveCardState()
 
@@ -171,6 +190,15 @@ internal class PaymentOptionsFragment :
 
 			val listener = requireActivity() as? IPaymentOptionsFragment
 			listener?.runInstallments()
+			dismiss()
+		}
+
+		binding.buttonCash.setOnClickListener {
+			updateEmail()
+			updateSaveCard()
+
+			val listener = requireActivity() as? IPaymentOptionsFragment
+			listener?.runCash()
 			dismiss()
 		}
 

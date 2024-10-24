@@ -12,6 +12,7 @@ import inc.tiptoppay.sdk.ui.PaymentActivity
 import inc.tiptoppay.sdk.viewmodel.PaymentCardViewModel
 import inc.tiptoppay.sdk.viewmodel.PaymentFinishViewModel
 import inc.tiptoppay.sdk.viewmodel.InstallmentsViewModel
+import inc.tiptoppay.sdk.viewmodel.PaymentCashViewModel
 import inc.tiptoppay.sdk.viewmodel.PaymentOptionsViewModel
 import inc.tiptoppay.sdk.viewmodel.PaymentProcessViewModel
 import okhttp3.OkHttpClient
@@ -85,4 +86,5 @@ internal interface TipTopPayComponent {
 	fun inject(processViewModel: PaymentProcessViewModel)
 	fun inject(finishViewModel: PaymentFinishViewModel)
 	fun inject(installmentsViewModel: InstallmentsViewModel)
+	fun inject(cashViewModel: PaymentCashViewModel)
 }

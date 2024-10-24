@@ -1,5 +1,7 @@
 package inc.tiptoppay.sdk.api
 
+import inc.tiptoppay.sdk.api.models.AltpayPayTransactionResponse
+import inc.tiptoppay.sdk.api.models.AltpayPayRequestBody
 import inc.tiptoppay.sdk.api.models.TipTopPayBinInfoResponse
 import inc.tiptoppay.sdk.api.models.TipTopPayPublicKeyResponse
 import inc.tiptoppay.sdk.api.models.TipTopPayTransactionResponse
@@ -25,12 +27,14 @@ interface TipTopPayApiService {
 	@POST("payments/ThreeDSCallback")
 	fun postThreeDs(@Body body: ThreeDsRequestBody): Single<Boolean>
 
+	@POST("payments/altpay/pay")
+	fun altpayPay(@Body body: AltpayPayRequestBody): Single<AltpayPayTransactionResponse>
+
 	@GET("bins/info/{firstSixDigits}")
 	fun getBinInfo(@Path("firstSixDigits") firstSixDigits: String): Single<TipTopPayBinInfoResponse>
 
 	@GET("bins/info")
 	fun getBinInfo(@QueryMap queryMap: Map<String, String>): Single<TipTopPayBinInfoResponse>
-
 
 	@GET("payments/publickey")
 	fun getPublicKey(): Single<TipTopPayPublicKeyResponse>
@@ -40,4 +44,5 @@ interface TipTopPayApiService {
 
 	@GET("installments/calculate/sum-by-period")
 	fun getInstallmentsConfiguration(@Query("terminalPublicId") publicId: String, @Query("amount") amount: String): Single<TipTopPayInstallmentsConfigurationResponse>
+
 }
