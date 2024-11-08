@@ -2,12 +2,14 @@ package inc.tiptoppay.sdk.util
 
 import inc.tiptoppay.sdk.api.models.TipTopPayTransaction
 import inc.tiptoppay.sdk.configuration.PaymentData
+import inc.tiptoppay.sdk.configuration.SpeiData
 import inc.tiptoppay.sdk.ui.dialogs.PaymentFinishStatus
 import inc.tiptoppay.sdk.viewmodel.PaymentCashViewModel
 import inc.tiptoppay.sdk.viewmodel.PaymentCashViewModelFactory
 import inc.tiptoppay.sdk.viewmodel.PaymentFinishViewModelFactory
 import inc.tiptoppay.sdk.viewmodel.PaymentOptionsViewModelFactory
 import inc.tiptoppay.sdk.viewmodel.PaymentProcessViewModelFactory
+import inc.tiptoppay.sdk.viewmodel.PaymentSpeiViewModelFactory
 
 internal object InjectorUtils {
 
@@ -29,5 +31,9 @@ internal object InjectorUtils {
 
     fun providePaymentCashViewModelFactory(paymentData: PaymentData): PaymentCashViewModelFactory {
         return PaymentCashViewModelFactory(paymentData)
+    }
+
+    fun providePaymentSpeiViewModelFactory(paymentData: PaymentData, speiData: SpeiData): PaymentSpeiViewModelFactory {
+        return PaymentSpeiViewModelFactory(paymentData, speiData)
     }
 }

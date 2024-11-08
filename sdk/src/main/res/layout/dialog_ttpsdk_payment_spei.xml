@@ -1,0 +1,473 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/ttpsdk_white"
+            android:paddingTop="20dp"
+            android:paddingBottom="16dp">
+
+            <TextView
+                android:id="@+id/text_title"
+                style="@style/ttpsdk_TextTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:gravity="center"
+                android:text=""
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <LinearLayout
+                android:id="@+id/ll_pending"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="20dp"
+                android:background="@drawable/ttpsdk_bg_rounded_yellow"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:padding="8dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/text_title">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ttpsdk_ic_pending_small" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/sf_pro_text_regular"
+                    android:letterSpacing="-0.01"
+                    android:lineSpacingExtra="5sp"
+                    android:paddingStart="16dp"
+                    android:text="@string/ttpsdk_text_spei_purchase_pending_payment"
+                    android:textColor="#222D41"
+                    android:textSize="16sp"
+                    android:textStyle="normal" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/text_open_your_bank_app"
+                style="@style/ttpsdk_TextTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:gravity="center"
+                android:text="@string/ttpsdk_text_spei_open_your_online_bank"
+                android:textSize="22sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/ll_pending" />
+
+            <TextView
+                android:id="@+id/text_using_following_details"
+                style="@style/ttpsdk_TextTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/ttpsdk_text_spei_using_the_following_details"
+                android:textSize="14sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/text_open_your_bank_app" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/til_clabe"
+                style="@style/ttpsdk_TextInputLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="20dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/text_using_following_details">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/edit_clabe"
+                    style="@style/ttpsdk_TextInputEditText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/ttpsdk_bg_edit_text_spei_not_focused"
+                    android:clickable="false"
+                    android:focusable="false"
+                    android:hint="@string/ttpsdk_text_spei_clabe" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <ImageButton
+                android:id="@+id/button_clabe_copy"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:background="@null"
+                android:src="@drawable/ttpsdk_ic_copy"
+                app:layout_constraintBottom_toBottomOf="@id/til_clabe"
+                app:layout_constraintEnd_toEndOf="@id/til_clabe"
+                app:layout_constraintTop_toTopOf="@id/til_clabe" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/til_bank"
+                style="@style/ttpsdk_TextInputLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="20dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/til_clabe">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/edit_bank"
+                    style="@style/ttpsdk_TextInputEditText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/ttpsdk_bg_edit_text_spei_not_focused"
+                    android:clickable="false"
+                    android:focusable="false"
+                    android:hint="@string/ttpsdk_text_spei_bank" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <ImageButton
+                android:id="@+id/button_bank_copy"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:background="@null"
+                android:src="@drawable/ttpsdk_ic_copy"
+                app:layout_constraintBottom_toBottomOf="@id/til_bank"
+                app:layout_constraintEnd_toEndOf="@id/til_bank"
+                app:layout_constraintTop_toTopOf="@id/til_bank" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/til_amount"
+                style="@style/ttpsdk_TextInputLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="20dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/til_bank">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/edit_amount"
+                    style="@style/ttpsdk_TextInputEditText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/ttpsdk_bg_edit_text_spei_not_focused"
+                    android:clickable="false"
+                    android:focusable="false"
+                    android:hint="@string/ttpsdk_text_spei_amount" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <ImageButton
+                android:id="@+id/button_amount_copy"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:background="@null"
+                android:src="@drawable/ttpsdk_ic_copy"
+                app:layout_constraintBottom_toBottomOf="@id/til_amount"
+                app:layout_constraintEnd_toEndOf="@id/til_amount"
+                app:layout_constraintTop_toTopOf="@id/til_amount" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/til_payment_concept"
+                style="@style/ttpsdk_TextInputLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="20dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/til_amount">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/edit_payment_concept"
+                    style="@style/ttpsdk_TextInputEditText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/ttpsdk_bg_edit_text_spei_not_focused"
+                    android:clickable="false"
+                    android:focusable="false"
+                    android:hint="@string/ttpsdk_text_spei_payment_concept" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <ImageButton
+                android:id="@+id/button_payment_concept_copy"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:background="@null"
+                android:src="@drawable/ttpsdk_ic_copy"
+                app:layout_constraintBottom_toBottomOf="@id/til_payment_concept"
+                app:layout_constraintEnd_toEndOf="@id/til_payment_concept"
+                app:layout_constraintTop_toTopOf="@id/til_payment_concept" />
+
+            <LinearLayout
+                android:id="@+id/ll_exp_date"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="20dp"
+                android:gravity="center"
+                android:orientation="horizontal"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/til_payment_concept">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/rubik"
+                    android:text="@string/ttpsdk_text_spei_pay_before"
+                    android:textColor="@color/ttpsdk_grey"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/text_exp_date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:fontFamily="@font/rubik_bold"
+                    android:textColor="@color/ttpsdk_black"
+                    android:textSize="14sp" />
+            </LinearLayout>
+
+            <FrameLayout
+                android:id="@+id/fl_divider_top"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="16dp"
+                android:background="@color/ttpsdk_color_spei_divider"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/ll_exp_date" />
+
+            <FrameLayout
+                android:id="@+id/fl_email_block"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="20dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/fl_divider_top">
+
+                <LinearLayout
+                    android:id="@+id/ll_email_done"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:visibility="gone">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/rubik"
+                        android:gravity="center"
+                        android:text="@string/ttpsdk_text_spei_payment_details_send_to"
+                        android:textColor="@color/ttpsdk_black"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:id="@+id/text_email"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/rubik_bold"
+                        android:textColor="@color/ttpsdk_black"
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
+
+                    <Button
+                        android:id="@+id/button_send_to_another_email"
+                        style="@style/ttpsdk_ButtonBlue"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:background="@drawable/ttpsdk_bg_rounded_white_button"
+                        android:text="@string/ttpsdk_text_spei_send_to_another_email"
+                        android:textColor="@color/colorAccent" />
+                </LinearLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/ll_email_send"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/text_send_to"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/rubik"
+                        android:gravity="center"
+                        android:text="@string/ttpsdk_text_spei_send_payment_details_by_email"
+                        android:textColor="@color/ttpsdk_black"
+                        android:textSize="16sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <LinearLayout
+                        android:id="@+id/ll_email_error"
+                        android:layout_width="0px"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:background="@drawable/ttpsdk_bg_rounded_pink"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:padding="10dp"
+
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/text_send_to">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ttpsdk_ic_error" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:paddingStart="16dp">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/sf_pro_text_regular"
+                                android:letterSpacing="-0.01"
+                                android:lineSpacingExtra="5sp"
+                                android:text="@string/ttpsdk_text_spei_email_error"
+                                android:textColor="#EB5757"
+                                android:textSize="15sp"
+                                android:textStyle="normal" />
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/sf_pro_text_regular"
+                                android:letterSpacing="-0.01"
+                                android:lineSpacingExtra="5sp"
+                                android:text="@string/ttpsdk_text_spei_try_again"
+                                android:textColor="#EB5757"
+                                android:textSize="13sp"
+                                android:textStyle="normal" />
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/button_send_email"
+                        android:layout_width="56dp"
+                        android:layout_height="56dp"
+                        android:layout_marginTop="16dp"
+                        android:background="@drawable/ttpsdk_bg_rounded_blue_button"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/ll_email_error">
+
+                        <ImageView
+                            android:id="@+id/image_send_icon"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true"
+                            android:src="@drawable/ttpsdk_ic_send_email" />
+
+                        <ProgressBar
+                            android:id="@+id/button_email_progress"
+                            android:layout_width="28dp"
+                            android:layout_height="28dp"
+                            android:layout_centerInParent="true"
+                            android:indeterminateTint="@color/ttpsdk_white" />
+                    </RelativeLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/text_field_email"
+                        style="@style/ttpsdk_TextInputLayout"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginEnd="16dp"
+                        android:hint="@string/ttpsdk_text_options_email_title"
+                        app:layout_constraintEnd_toStartOf="@id/button_send_email"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/ll_email_error">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/edit_email"
+                            style="@style/ttpsdk_TextInputEditText"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:imeOptions="actionDone"
+                            android:inputType="textEmailAddress"
+                            android:maxLines="1" />
+                    </com.google.android.material.textfield.TextInputLayout>
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </FrameLayout>
+
+            <FrameLayout
+                android:id="@+id/fl_divider_bottom"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="16dp"
+                android:background="@color/ttpsdk_color_spei_divider"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/fl_email_block" />
+
+            <TextView
+                android:id="@+id/text_make_payment"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="20dp"
+                android:fontFamily="@font/rubik"
+                android:gravity="center"
+                android:text="@string/ttpsdk_text_spei_make_spei_via_your_bank"
+                android:textColor="@color/ttpsdk_grey"
+                android:textSize="14sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/fl_divider_bottom" />
+
+            <TextView
+                android:id="@+id/text_other_metod"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="20dp"
+                android:drawableStart="@drawable/ttpsdk_ic_back_arrow"
+                android:drawablePadding="8dp"
+                android:fontFamily="@font/rubik"
+                android:gravity="center"
+                android:text="@string/ttpsdk_text_spei_other_method"
+                android:textColor="@color/colorAccent"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/text_make_payment" />
+
+            <ImageView
+                android:layout_width="210dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/ttpsdk_margin_big"
+                android:src="@drawable/ttpsdk_secured_logo"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/text_other_metod" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>

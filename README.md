@@ -230,6 +230,9 @@ class CardIOScanner: CardScanner() {
 
 ### Update history:
 
+#### 1.0.7
+* Added Spei payments for MX region
+
 #### 1.0.6
 * Added cash payments for MX region
 

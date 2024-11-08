@@ -1,11 +1,13 @@
 package inc.tiptoppay.sdk.ui.dialogs.base
 
+import android.content.res.ColorStateList
 import android.os.Bundle
 import android.view.View
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import androidx.core.content.ContextCompat
 import com.google.android.material.textfield.TextInputEditText
+import com.google.android.material.textfield.TextInputLayout
 import inc.tiptoppay.sdk.R
 import inc.tiptoppay.sdk.configuration.PaymentConfiguration
 import inc.tiptoppay.sdk.models.SDKConfiguration
@@ -84,11 +86,43 @@ internal abstract class BasePaymentDialogFragment<VS: BaseViewState, VM: BaseVie
 		return activity as  PaymentActivity
 	}
 
-	protected fun errorMode(isErrorMode: Boolean, editText: TextInputEditText){
+	protected fun errorMode(isErrorMode: Boolean, editText: TextInputEditText) {
 		if (isErrorMode) {
 			editText.setTextColor(ContextCompat.getColor(requireContext(), R.color.ttpsdk_pale_red))
 			editText.setBackgroundResource(R.drawable.ttpsdk_bg_edit_text_selector_error)
 		} else {
+			editText.setTextColor(ContextCompat.getColor(requireContext(), R.color.ttpsdk_dark))
+			editText.setBackgroundResource(R.drawable.ttpsdk_bg_edit_text_selector)
+		}
+	}
+
+	protected fun errorMode(isErrorMode: Boolean, editText: TextInputEditText, editLayout: TextInputLayout){
+		if (isErrorMode) {
+
+			val csl = ColorStateList(
+				arrayOf(intArrayOf(android.R.attr.state_pressed), intArrayOf()),
+				intArrayOf(
+					ContextCompat.getColor(requireContext(), R.color.ttpsdk_pale_red),
+					ContextCompat.getColor(requireContext(), R.color.ttpsdk_pale_red)
+				)
+			)
+
+			editLayout.defaultHintTextColor = csl
+			editLayout.hintTextColor = csl
+			editText.setTextColor(ContextCompat.getColor(requireContext(), R.color.ttpsdk_pale_red))
+			editText.setBackgroundResource(R.drawable.ttpsdk_bg_edit_text_selector_error)
+		} else {
+
+			val csl = ColorStateList(
+				arrayOf(intArrayOf(android.R.attr.state_pressed), intArrayOf()),
+				intArrayOf(
+					ContextCompat.getColor(requireContext(), R.color.ttpsdk_edit_text_hint),
+					ContextCompat.getColor(requireContext(), R.color.ttpsdk_edit_text_hint)
+				)
+			)
+
+			editLayout.defaultHintTextColor = csl
+			editLayout.hintTextColor = csl
 			editText.setTextColor(ContextCompat.getColor(requireContext(), R.color.ttpsdk_dark))
 			editText.setBackgroundResource(R.drawable.ttpsdk_bg_edit_text_selector)
 		}

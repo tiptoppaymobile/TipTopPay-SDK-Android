@@ -89,4 +89,13 @@ class TipTopPayApi @Inject constructor(private val apiService: TipTopPayApiServi
 			.subscribeOn(Schedulers.io())
 	}
 
+	fun qrLinkStatusWait(requestBody: QrLinkStatusWaitBody): Single<QrLinkStatusWaitResponse> {
+		return apiService.qrLinkStatusWait(requestBody)
+			.subscribeOn(Schedulers.io())
+	}
+
+	fun sendEmailForSpei(requesrBody: SpeiSendEmailBody): Single<SpeiSendEmailResponse> {
+		return apiService.sendEmailForSpei(requesrBody)
+			.subscribeOn(Schedulers.io())
+	}
 }

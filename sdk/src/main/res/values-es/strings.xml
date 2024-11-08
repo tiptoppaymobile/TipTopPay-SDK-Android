@@ -38,6 +38,22 @@
     <string name="ttpsdk_text_cash_convenience_store">Tienda de conveniencia</string>
     <string name="ttpsdk_text_cash_store_not_available">No disponible por el momento, por favor utilice otro método de pago</string>
 
+    <string name="ttpsdk_text_spei_purchase_pending_payment">Compra pendiente de pago</string>
+    <string name="ttpsdk_text_spei_open_your_online_bank">Abre tu banca en línea\ny realiza el pago SPEI</string>
+    <string name="ttpsdk_text_spei_using_the_following_details">usando los siguientes datos:</string>
+    <string name="ttpsdk_text_spei_clabe">CLABE</string>
+    <string name="ttpsdk_text_spei_bank">Banco</string>
+    <string name="ttpsdk_text_spei_amount">Monto</string>
+    <string name="ttpsdk_text_spei_payment_concept">Concepto del pago</string>
+    <string name="ttpsdk_text_spei_pay_before">Pagar antes de</string>
+    <string name="ttpsdk_text_spei_payment_details_send_to">Los detalles del pago y confirmación serán enviados a:</string>
+    <string name="ttpsdk_text_spei_send_to_another_email">Enviar a otro correo electrónico</string>
+    <string name="ttpsdk_text_spei_make_spei_via_your_bank">Realiza un pago SPEI a través de tu banco. Esta página se puede cerrar. Si no pudiste pagar a través de SPEI, elige otro método de pago</string>
+    <string name="ttpsdk_text_spei_other_method">Otro método</string>
+    <string name="ttpsdk_text_spei_send_payment_details_by_email">Enviar detalles de pago y confirmación por correo electrónico</string>
+    <string name="ttpsdk_text_spei_email_error">Error al enviar los detalles al correo electrónico</string>
+    <string name="ttpsdk_text_spei_try_again">Inténtalo de nuevo</string>
+
     <string name="ttpsdk_text_process_title">Procesando el pago</string>
     <string name="ttpsdk_text_process_title_success">Pago realizado</string>
     <string name="ttpsdk_text_process_button_success">Volver a la tienda</string>

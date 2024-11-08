@@ -67,7 +67,7 @@
                 android:orientation="horizontal"
                 android:gravity="center"
                 android:layout_marginTop="16dp"
-                android:background="@drawable/ttpsdk_bg_rounded_cash_button"
+                android:background="@drawable/ttpsdk_bg_rounded_white_button"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
 
@@ -120,6 +120,30 @@
             android:text="@string/ttpsdk_text_cash_min_hint"
             android:gravity="center"
             android:visibility="gone"/>
+
+        <FrameLayout
+            android:id="@+id/button_spei"
+            style="@style/ttpsdk_ButtonBlue"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/ttpsdk_bg_rounded_spei_button"
+            android:visibility="gone">
+
+            <ImageView
+                android:id="@+id/button_spei_logo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:src="@drawable/ttpsdk_ic_spei"/>
+
+            <ProgressBar
+                android:id="@+id/button_spei_progress"
+                android:layout_width="28dp"
+                android:layout_height="28dp"
+                android:layout_gravity="center"
+                android:indeterminateTint="@color/colorPrimary" />
+        </FrameLayout>
 
         <include
             android:id="@+id/button_googlepay"

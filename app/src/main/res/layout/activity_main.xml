@@ -57,7 +57,7 @@
             <EditText
                 android:id="@+id/edit_public_id"
                 style="@style/DemoEditText"
-                android:text="test_api_00000000000000000000002"
+                android:text="pk_67abc85e79c3f4b9e4bee0fb9f756"
                 android:hint="test_api_00000000000000000000002" />
 
             <TextView

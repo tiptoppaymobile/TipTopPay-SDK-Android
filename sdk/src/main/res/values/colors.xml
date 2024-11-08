@@ -14,4 +14,5 @@
     <color name="ttpsdk_transparent">#64000000</color>
     <color name="ttpsdk_edit_text_hint">#8C949F</color>
     <color name="ttpsdk_color_text_splash_screen_loader">#0B1E46</color>
+    <color name="ttpsdk_color_spei_divider">#F0F2F5</color>
 </resources>

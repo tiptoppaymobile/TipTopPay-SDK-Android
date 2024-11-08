@@ -17,7 +17,7 @@ import inc.tiptoppay.sdk.viewmodel.PaymentFinishViewModel
 import inc.tiptoppay.sdk.viewmodel.PaymentFinishViewState
 
 internal enum class PaymentFinishStatus {
-	Succeeded,
+	Successed,
 	Failed;
 }
 
@@ -83,8 +83,6 @@ internal class PaymentFinishFragment: BasePaymentDialogFragment<PaymentFinishVie
 	}
 
 	override fun render(state: PaymentFinishViewState) {
-		currentState = state
-		updateWith(state.status)
 	}
 
 	private val status by lazy {
@@ -123,8 +121,6 @@ internal class PaymentFinishFragment: BasePaymentDialogFragment<PaymentFinishVie
 
 	private fun updateWith(status: PaymentFinishStatus) {
 
-		var status = status
-
 		binding.buttonFinish.isInvisible = false
 		binding.buttonFinish.setBackgroundResource(R.drawable.ttpsdk_bg_rounded_blue_button)
 		binding.buttonFinish.setTextColor(context?.let { ContextCompat.getColor(it, R.color.ttpsdk_white) } ?: 0xFFFFFF)
@@ -132,7 +128,7 @@ internal class PaymentFinishFragment: BasePaymentDialogFragment<PaymentFinishVie
 		val listener = requireActivity() as? IPaymentFinishFragment
 
 		when (status) {
-			PaymentFinishStatus.Succeeded -> {
+			PaymentFinishStatus.Successed -> {
 				binding.iconStatus.setImageResource(R.drawable.ttpsdk_ic_success)
 				binding.textStatus.setText(R.string.ttpsdk_text_process_title_success)
 				binding.textDescription.text = ""

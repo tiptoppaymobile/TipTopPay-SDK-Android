@@ -38,6 +38,22 @@
     <string name="ttpsdk_text_cash_convenience_store"></string>
     <string name="ttpsdk_text_cash_store_not_available"></string>
 
+    <string name="ttpsdk_text_spei_purchase_pending_payment"></string>
+    <string name="ttpsdk_text_spei_open_your_online_bank"></string>
+    <string name="ttpsdk_text_spei_using_the_following_details"></string>
+    <string name="ttpsdk_text_spei_clabe"></string>
+    <string name="ttpsdk_text_spei_bank"></string>
+    <string name="ttpsdk_text_spei_amount"></string>
+    <string name="ttpsdk_text_spei_payment_concept"></string>
+    <string name="ttpsdk_text_spei_pay_before"></string>
+    <string name="ttpsdk_text_spei_payment_details_send_to"></string>
+    <string name="ttpsdk_text_spei_send_to_another_email"></string>
+    <string name="ttpsdk_text_spei_make_spei_via_your_bank"></string>
+    <string name="ttpsdk_text_spei_other_method"></string>
+    <string name="ttpsdk_text_spei_send_payment_details_by_email"></string>
+    <string name="ttpsdk_text_spei_email_error"></string>
+    <string name="ttpsdk_text_spei_try_again"></string>
+
     <string name="ttpsdk_text_process_title">Оплата в процессе</string>
     <string name="ttpsdk_text_process_title_success">Оплата прошла успешно</string>
     <string name="ttpsdk_text_process_button_success">Отлично!</string>

@@ -15,7 +15,6 @@
     <string name="ttpsdk_text_options_card_be_saved">Your сard information will be saved for this subscription</string>
     <string name="ttpsdk_text_cash_min_hint">Cash payments available for orders higher over</string>
 
-
     <string name="ttpsdk_text_card_title">Pay by card</string>
     <string name="ttpsdk_text_card_hint_number">Card number</string>
     <string name="ttpsdk_text_card_hint_exp">MM / YY</string>
@@ -38,6 +37,22 @@
     <string name="ttpsdk_text_cash_10_stores">+10 Stores</string>
     <string name="ttpsdk_text_cash_convenience_store">Convenience Store</string>
     <string name="ttpsdk_text_cash_store_not_available">Not available now, please use another method</string>
+
+    <string name="ttpsdk_text_spei_purchase_pending_payment">Purchase pending payment</string>
+    <string name="ttpsdk_text_spei_open_your_online_bank">Open your online bank\nand make a SPEI payment</string>
+    <string name="ttpsdk_text_spei_using_the_following_details">using the following details:</string>
+    <string name="ttpsdk_text_spei_clabe">CLABE</string>
+    <string name="ttpsdk_text_spei_bank">Bank</string>
+    <string name="ttpsdk_text_spei_amount">Amount</string>
+    <string name="ttpsdk_text_spei_payment_concept">Payment concept</string>
+    <string name="ttpsdk_text_spei_pay_before">Pay before</string>
+    <string name="ttpsdk_text_spei_payment_details_send_to">Payment details and confirmation will be sent to:</string>
+    <string name="ttpsdk_text_spei_send_to_another_email">Send to another email</string>
+    <string name="ttpsdk_text_spei_make_spei_via_your_bank">Make a SPEI payment via your bank. This page can be closed. If you could not pay via SPEI, choose another payment method</string>
+    <string name="ttpsdk_text_spei_other_method">Other method</string>
+    <string name="ttpsdk_text_spei_send_payment_details_by_email">Send payment details and confirmation by email</string>
+    <string name="ttpsdk_text_spei_email_error">Error sending details to email</string>
+    <string name="ttpsdk_text_spei_try_again">Try again</string>
 
     <string name="ttpsdk_text_process_title">Payment is being processed</string>
     <string name="ttpsdk_text_process_title_success">Payment completed</string>

@@ -13,6 +13,7 @@ import androidx.core.view.isGone
 import androidx.fragment.app.viewModels
 import com.google.android.material.checkbox.MaterialCheckBox
 import inc.tiptoppay.sdk.R
+import inc.tiptoppay.sdk.configuration.SpeiData
 import inc.tiptoppay.sdk.databinding.DialogTtpsdkPaymentOptionsBinding
 import inc.tiptoppay.sdk.models.ApiError
 import inc.tiptoppay.sdk.models.SDKConfiguration
@@ -27,6 +28,8 @@ import inc.tiptoppay.sdk.viewmodel.PaymentOptionsViewState
 
 internal enum class PaymentOptionsStatus {
 	Waiting,
+	SpeiLoading,
+	SpeiSuccess,
 	Failed;
 }
 internal class PaymentOptionsFragment :
@@ -35,6 +38,7 @@ internal class PaymentOptionsFragment :
 		fun runCardPayment()
 		fun runInstallments()
 		fun runCash()
+		fun runSpei(speiData: SpeiData)
 		fun runGooglePay()
 	}
 
@@ -85,7 +89,13 @@ internal class PaymentOptionsFragment :
 		if (sdkConfig?.availablePaymentMethods?.cashAvailable == true) {
 			binding.layontButtonCash.visibility = View.VISIBLE
 		} else {
-			binding.buttonCash.visibility = View.GONE
+			binding.layontButtonCash.visibility = View.GONE
+		}
+
+		if (sdkConfig?.availablePaymentMethods?.speiAvailable == true) {
+			binding.buttonSpei.visibility = View.VISIBLE
+		} else {
+			binding.buttonSpei.visibility = View.GONE
 		}
 
 		updateWith(state.status, state.reasonCode)
@@ -97,7 +107,21 @@ internal class PaymentOptionsFragment :
 
 		when (status) {
 			PaymentOptionsStatus.Waiting -> {
-
+				setSpeiLoading(false)
+			}
+			PaymentOptionsStatus.SpeiLoading -> {
+				setSpeiLoading(true)
+				disableAllButtons()
+			}
+			PaymentOptionsStatus.SpeiSuccess -> {
+				setSpeiLoading(false)
+				enableAllButtons()
+				val listener = requireActivity() as? IPaymentOptionsFragment
+				val speiData = viewModel.viewState.value?.speiData
+				if (speiData != null) {
+					listener?.runSpei(speiData)
+					dismiss()
+				}
 			}
 			PaymentOptionsStatus.Failed -> {
 				enableAllButtons()
@@ -200,6 +224,13 @@ internal class PaymentOptionsFragment :
 			val listener = requireActivity() as? IPaymentOptionsFragment
 			listener?.runCash()
 			dismiss()
+		}
+
+		binding.buttonSpei.setOnClickListener {
+			updateEmail()
+			updateSaveCard()
+
+			viewModel.getSpeiPaymentData()
 		}
 
 		binding.buttonGooglepay.root.setOnClickListener {
@@ -307,6 +338,16 @@ internal class PaymentOptionsFragment :
 		}
 
 		return valid
+	}
+
+	private fun setSpeiLoading(isLoading: Boolean) {
+		if (isLoading) {
+			binding.buttonSpeiLogo.visibility = View.GONE
+			binding.buttonSpeiProgress.visibility = View.VISIBLE
+		} else {
+			binding.buttonSpeiLogo.visibility = View.VISIBLE
+			binding.buttonSpeiProgress.visibility = View.GONE
+		}
 	}
 
 	private fun disableAllButtons() {

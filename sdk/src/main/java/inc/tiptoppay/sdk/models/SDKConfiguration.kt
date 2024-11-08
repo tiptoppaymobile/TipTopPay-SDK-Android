@@ -20,11 +20,13 @@ data class PublicKey(
 data class AvailablePaymentMethods(
 	var googlePayAvailable: Boolean = false,
 	var installmentsAvailable: Boolean = false,
-	var cashAvailable: Boolean = false
+	var cashAvailable: Boolean = false,
+	var speiAvailable: Boolean = false
 )
 
 data class TerminalConfiguration(
 	var gPayGatewayName: String = "",
 	var isSaveCard: Int? = null,
-	var skipExpiryValidation: Boolean? = null
+	var skipExpiryValidation: Boolean? = null,
+	var terminalName: String? = null
 )

@@ -6,6 +6,10 @@ import inc.tiptoppay.sdk.api.models.TipTopPayBinInfoResponse
 import inc.tiptoppay.sdk.api.models.TipTopPayPublicKeyResponse
 import inc.tiptoppay.sdk.api.models.TipTopPayTransactionResponse
 import inc.tiptoppay.sdk.api.models.PaymentRequestBody
+import inc.tiptoppay.sdk.api.models.QrLinkStatusWaitBody
+import inc.tiptoppay.sdk.api.models.QrLinkStatusWaitResponse
+import inc.tiptoppay.sdk.api.models.SpeiSendEmailBody
+import inc.tiptoppay.sdk.api.models.SpeiSendEmailResponse
 import inc.tiptoppay.sdk.api.models.ThreeDsRequestBody
 import inc.tiptoppay.sdk.api.models.TipTopPayInstallmentsConfigurationResponse
 import inc.tiptoppay.sdk.api.models.TipTopPayMerchantConfigurationResponse
@@ -45,4 +49,9 @@ interface TipTopPayApiService {
 	@GET("installments/calculate/sum-by-period")
 	fun getInstallmentsConfiguration(@Query("terminalPublicId") publicId: String, @Query("amount") amount: String): Single<TipTopPayInstallmentsConfigurationResponse>
 
+	@POST("payments/qr/status/wait")
+	fun qrLinkStatusWait(@Body body: QrLinkStatusWaitBody): Single<QrLinkStatusWaitResponse>
+
+	@POST("stp/spei/payment-details")
+	fun sendEmailForSpei(@Body body: SpeiSendEmailBody): Single<SpeiSendEmailResponse>
 }

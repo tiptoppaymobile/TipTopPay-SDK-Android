@@ -7,24 +7,19 @@ import android.widget.Toast
 import androidx.annotation.StringRes
 import androidx.appcompat.app.AppCompatActivity
 import com.afollestad.materialdialogs.MaterialDialog
-import io.reactivex.disposables.CompositeDisposable
-import inc.tiptoppay.sdk.api.models.TipTopPayTransactionError
 import inc.tiptoppay.demo.R
-import inc.tiptoppay.demo.databinding.ToolbarBinding
+import inc.tiptoppay.sdk.api.models.TipTopPayTransactionError
 import java.net.UnknownHostException
-import java.util.*
+import java.util.Locale
 
 abstract class BaseActivity : AppCompatActivity() {
 	protected val TAG = "TAG_" + javaClass.simpleName.toUpperCase(Locale.getDefault())
-	protected var compositeDisposable = CompositeDisposable()
 	private var loadingDialog: MaterialDialog? = null
 	protected abstract val layoutId: Int
 
 
 	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)
-		val toolbar = ToolbarBinding.inflate(layoutInflater).root
-		setSupportActionBar(toolbar)
 		supportActionBar?.setDisplayHomeAsUpEnabled(true)
 		initLoadingDialog()
 	}

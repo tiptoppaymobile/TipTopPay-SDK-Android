@@ -15,6 +15,7 @@ import inc.tiptoppay.sdk.viewmodel.InstallmentsViewModel
 import inc.tiptoppay.sdk.viewmodel.PaymentCashViewModel
 import inc.tiptoppay.sdk.viewmodel.PaymentOptionsViewModel
 import inc.tiptoppay.sdk.viewmodel.PaymentProcessViewModel
+import inc.tiptoppay.sdk.viewmodel.PaymentSpeiViewModel
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -87,4 +88,5 @@ internal interface TipTopPayComponent {
 	fun inject(finishViewModel: PaymentFinishViewModel)
 	fun inject(installmentsViewModel: InstallmentsViewModel)
 	fun inject(cashViewModel: PaymentCashViewModel)
+	fun inject(speiViewModel: PaymentSpeiViewModel)
 }

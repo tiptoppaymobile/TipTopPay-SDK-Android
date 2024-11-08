@@ -11,7 +11,8 @@ data class TipTopPayMerchantConfigurationResponse(
 data class MerchantConfiguration(
 	@SerializedName("ExternalPaymentMethods") val externalPaymentMethods: ArrayList<ExternalPaymentMethods>?,
 	@SerializedName("Features") val features: Features?,
-	@SerializedName("SkipExpiryValidation") val skipExpiryValidation: Boolean?
+	@SerializedName("SkipExpiryValidation") val skipExpiryValidation: Boolean?,
+	@SerializedName("TerminalName") val terminalName: String?
 )
 
 data class ExternalPaymentMethods(
