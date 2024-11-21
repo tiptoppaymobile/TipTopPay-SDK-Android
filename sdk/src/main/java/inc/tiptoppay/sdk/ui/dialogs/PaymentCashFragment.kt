@@ -1,15 +1,18 @@
 package inc.tiptoppay.sdk.ui.dialogs
 
+import android.content.DialogInterface
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.text.Editable
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import inc.tiptoppay.sdk.R
 import inc.tiptoppay.sdk.databinding.DialogTtpsdkPaymentCashBinding
+import inc.tiptoppay.sdk.ui.PaymentActivity
 import inc.tiptoppay.sdk.ui.dialogs.base.BasePaymentBottomSheetFragment
 import inc.tiptoppay.sdk.util.InjectorUtils
 import inc.tiptoppay.sdk.util.TextWatcherAdapter
@@ -79,9 +82,16 @@ internal class PaymentCashFragment :
 				updateStateButtons()
 			}
 			PaymentCashStatus.BarcodeCreated -> {
-				val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse(state.barcodeLink))
-				startActivity(browserIntent)
-				activity().finish()
+				if (state.barcodeLink.isNullOrEmpty()) {
+					updateStateButtons()
+				} else {
+
+					val url = state.barcodeLink
+
+					val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
+					startActivity(browserIntent)
+					activity().finish()
+				}
 			}
 			PaymentCashStatus.Failed -> {
 				val listener = requireActivity() as? IPaymentCashFragment
@@ -89,15 +99,6 @@ internal class PaymentCashFragment :
 				dismiss()
 			}
 			else -> {}
-
-		}
-
-		if (state.barcodeLink.isNullOrEmpty()) {
-			updateStateButtons()
-		} else {
-			val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse(state.barcodeLink))
-			startActivity(browserIntent)
-			activity().finish()
 		}
 	}
 
@@ -205,5 +206,10 @@ internal class PaymentCashFragment :
 		val emailIsValid = emailIsValid(binding.editEmail.text.toString())
 
 		return nameIsValid && emailIsValid
+	}
+
+	override fun onCancel(dialog: DialogInterface) {
+		super.onCancel(dialog)
+		(activity as PaymentActivity).showPaymentOptions()
 	}
 }

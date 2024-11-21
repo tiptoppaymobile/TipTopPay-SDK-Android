@@ -1,5 +1,6 @@
 package inc.tiptoppay.sdk.ui.dialogs
 
+import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
@@ -18,6 +19,7 @@ import inc.tiptoppay.sdk.card.CardType
 import inc.tiptoppay.sdk.databinding.DialogTtpsdkPaymentCardBinding
 import inc.tiptoppay.sdk.models.Region
 import inc.tiptoppay.sdk.scanner.CardData
+import inc.tiptoppay.sdk.ui.PaymentActivity
 import inc.tiptoppay.sdk.ui.dialogs.base.BasePaymentBottomSheetFragment
 import inc.tiptoppay.sdk.util.TextWatcherAdapter
 import inc.tiptoppay.sdk.util.hideKeyboard
@@ -291,4 +293,9 @@ internal class PaymentCardFragment :
 
 			else -> super.onActivityResult(requestCode, resultCode, data)
 		}
+
+	override fun onCancel(dialog: DialogInterface) {
+		super.onCancel(dialog)
+		(activity as PaymentActivity).showPaymentOptions()
+	}
 }

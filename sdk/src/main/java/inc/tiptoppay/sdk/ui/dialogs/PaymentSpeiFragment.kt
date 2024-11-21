@@ -5,6 +5,7 @@ import android.content.ClipData
 import android.content.ClipDescription
 import android.content.ClipboardManager
 import android.content.Context.CLIPBOARD_SERVICE
+import android.content.DialogInterface
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
@@ -17,6 +18,7 @@ import androidx.fragment.app.viewModels
 import inc.tiptoppay.sdk.R
 import inc.tiptoppay.sdk.configuration.SpeiData
 import inc.tiptoppay.sdk.databinding.DialogTtpsdkPaymentSpeiBinding
+import inc.tiptoppay.sdk.ui.PaymentActivity
 import inc.tiptoppay.sdk.ui.dialogs.EmailFormStatus.*
 import inc.tiptoppay.sdk.ui.dialogs.base.BasePaymentDialogFragment
 import inc.tiptoppay.sdk.util.InjectorUtils
@@ -306,5 +308,10 @@ internal class PaymentSpeiFragment :
 
 		clipboardManager.setPrimaryClip(clipData)
 		Toast.makeText(requireActivity(), "Copied", Toast.LENGTH_SHORT).show()
+	}
+
+	override fun onCancel(dialog: DialogInterface) {
+		super.onCancel(dialog)
+		(activity as PaymentActivity).showPaymentOptions()
 	}
 }

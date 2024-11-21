@@ -330,23 +330,18 @@ internal class PaymentActivity : FragmentActivity(),
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-
         when (requestCode) {
-
             REQUEST_CODE_GOOGLE_PAY -> {
                 when (resultCode) {
                     Activity.RESULT_OK -> {
                         handleGooglePaySuccess(data)
                     }
-
                     Activity.RESULT_CANCELED, AutoResolveHelper.RESULT_ERROR -> {
                         handleGooglePayFailure(data)
                     }
-
                     else -> super.onActivityResult(requestCode, resultCode, data)
                 }
             }
-
             else -> super.onActivityResult(requestCode, resultCode, data)
         }
     }
@@ -391,6 +386,10 @@ internal class PaymentActivity : FragmentActivity(),
     }
 
     override fun onSpeiBackPressed() {
+        showUi()
+    }
+
+    fun showPaymentOptions() {
         showUi()
     }
 }

@@ -101,7 +101,7 @@ class MainActivity : BaseActivity() {
 			region = Region.MX,
 			paymentData = paymentData,
 			scanner = CardIOScanner(),
-			requireEmail = true,
+			requireEmail = false,
 			useDualMessagePayment = isDualMessagePayment,
 			apiUrl = apiUrl,
 			testMode = true

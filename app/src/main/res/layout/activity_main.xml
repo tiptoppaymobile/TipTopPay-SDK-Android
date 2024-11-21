@@ -47,8 +47,8 @@
             <EditText
                 android:id="@+id/edit_api_url"
                 style="@style/DemoEditText"
-                android:text="https://api-pre-mx.tiptoppay.mx/"
-                android:hint="https://api.tiptoppay.kz/"/>
+                android:text=""
+                android:hint="https://api.tiptoppay.mx/"/>
 
             <TextView
                 style="@style/DemoTextView"
@@ -57,7 +57,7 @@
             <EditText
                 android:id="@+id/edit_public_id"
                 style="@style/DemoEditText"
-                android:text="pk_67abc85e79c3f4b9e4bee0fb9f756"
+                android:text="test_api_00000000000000000000002"
                 android:hint="test_api_00000000000000000000002" />
 
             <TextView
@@ -68,7 +68,7 @@
                 android:id="@+id/edit_amount"
                 style="@style/DemoEditText"
                 android:hint="10"
-                android:text="10000" />
+                android:text="100" />
 
             <TextView
                 style="@style/DemoTextView"

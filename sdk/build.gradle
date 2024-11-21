@@ -2,11 +2,11 @@ plugins {
     id 'com.android.library'
     id 'org.jetbrains.kotlin.android'
     id 'kotlin-parcelize'
-    id 'kotlin-kapt'
+    id 'com.google.devtools.ksp'
 }
 
 android {
-    compileSdkVersion 34
+    compileSdkVersion 35
 
     defaultConfig {
         minSdkVersion 24
@@ -35,7 +35,7 @@ android {
     }
 
     buildFeatures {
-//        compose true
+        buildConfig true
     }
 
     compileOptions {
@@ -51,13 +51,13 @@ android {
 
 dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
-    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
-    implementation 'androidx.core:core-ktx:1.13.1'
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:2.0.20"
+    implementation 'androidx.core:core-ktx:1.15.0'
     implementation 'androidx.appcompat:appcompat:1.7.0'
 
     implementation 'com.google.android.material:material:1.12.0'
     implementation 'androidx.cardview:cardview:1.0.0'
-    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+    implementation 'androidx.constraintlayout:constraintlayout:2.2.0'
     implementation 'androidx.fragment:fragment-ktx:1.8.1'
     implementation 'androidx.arch.core:core-runtime:2.2.0'
 
@@ -87,10 +87,8 @@ dependencies {
     implementation "com.google.dagger:dagger:$dagger2Version"
     implementation "com.google.dagger:dagger-android:$dagger2Version"
     implementation "com.google.dagger:dagger-android-support:$dagger2Version"
-    implementation 'androidx.compose.ui:ui-android:1.6.8'
-    implementation 'androidx.compose.material3:material3:1.2.1'
-    kapt "com.google.dagger:dagger-compiler:$dagger2Version"
-    kapt "com.google.dagger:dagger-android-processor:$dagger2Version"
+    ksp "com.google.dagger:dagger-compiler:$dagger2Version"
+    ksp "com.google.dagger:dagger-android-processor:$dagger2Version"
 
     //rx google-play-services
     implementation 'io.ashdavies.rx.rxtasks:rx-tasks:2.2.0'

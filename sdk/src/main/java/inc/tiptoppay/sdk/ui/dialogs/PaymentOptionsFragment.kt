@@ -1,5 +1,6 @@
 package inc.tiptoppay.sdk.ui.dialogs
 
+import android.content.DialogInterface
 import android.os.Bundle
 import android.text.Editable
 import android.view.Gravity
@@ -356,5 +357,10 @@ internal class PaymentOptionsFragment :
 
 	private fun enableAllButtons() {
 		binding.viewBlockButtons.visibility = View.GONE
+	}
+
+	override fun onCancel(dialog: DialogInterface) {
+		super.onCancel(dialog)
+		activity?.finish()
 	}
 }

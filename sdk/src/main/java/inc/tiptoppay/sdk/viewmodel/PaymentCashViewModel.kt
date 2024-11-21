@@ -56,7 +56,6 @@ internal class PaymentCashViewModel(
             .map { response ->
 
                 if (response.success == true) {
-
                     val state = currentState.copy(
                         status = PaymentCashStatus.BarcodeCreated,
                         transactionId = response.transaction?.transactionId,
