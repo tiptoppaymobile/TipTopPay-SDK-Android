@@ -7,6 +7,10 @@ import inc.tiptoppay.demo.base.BaseActivity
 import inc.tiptoppay.demo.databinding.ActivityMainBinding
 import inc.tiptoppay.demo.support.CardIOScanner
 import inc.tiptoppay.sdk.api.models.PaymentDataPayer
+import inc.tiptoppay.sdk.api.models.PaymentDataReceipt
+import inc.tiptoppay.sdk.api.models.PaymentDataReceiptAmounts
+import inc.tiptoppay.sdk.api.models.PaymentDataReceiptItem
+import inc.tiptoppay.sdk.api.models.PaymentDataRecurrent
 import inc.tiptoppay.sdk.configuration.TipTopPaySDK
 import inc.tiptoppay.sdk.configuration.PaymentConfiguration
 import inc.tiptoppay.sdk.configuration.PaymentData
@@ -85,6 +89,41 @@ class MainActivity : BaseActivity() {
 		payer.phone = payerPhone
 		payer.postcode = payerPostcode
 
+		val receiptItem = PaymentDataReceiptItem(
+			label = description,
+			price = 300.0,
+			quantity = 3.0,
+			amount = 900.0,
+			vat = 20,
+			method = 0,
+			objectt = 0
+		)
+
+		val receiptItems = ArrayList<PaymentDataReceiptItem>()
+		receiptItems.add(receiptItem)
+
+		val receiptAmounts = PaymentDataReceiptAmounts(
+			electronic = 900.0,
+			advancePayment = 0.0,
+			credit = 0.0,
+			provision = 0.0
+		)
+
+		val receipt = PaymentDataReceipt(
+			items = receiptItems,
+			taxationSystem = 0,
+			email = email,
+			phone = payerPhone,
+			isBso = false,
+			amounts = receiptAmounts
+		)
+
+		val recurrent = PaymentDataRecurrent(
+			interval = "Month",
+			period = 1,
+			customerReceipt = receipt
+		)
+
 		val paymentData = PaymentData(
 			amount = amount,
 			currency = Currency.MXN,
@@ -93,6 +132,8 @@ class MainActivity : BaseActivity() {
 			accountId = accountId,
 			email = email,
 			payer = payer,
+			receipt = receipt,
+			recurrent = recurrent,
 			jsonData = jsonData
 		)
 

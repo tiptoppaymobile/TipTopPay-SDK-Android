@@ -33,7 +33,7 @@ internal class PaymentCashViewModel(
 
     fun pay(altPayType: String, name: String, email: String, locale: String) {
 
-        val jsonDataString: String? = checkAndGetCorrectJsonDataString(paymentData.jsonData)
+        val jsonDataString: String? = checkAndGetCorrectJsonDataString(paymentData.getJsonData())
 
         val payer = paymentData.payer?.copy(firstName = name, email = email)
 

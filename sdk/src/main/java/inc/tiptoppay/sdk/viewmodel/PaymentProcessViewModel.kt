@@ -35,7 +35,7 @@ internal class PaymentProcessViewModel(
 
 	fun pay() {
 
-		val jsonDataString: String? = checkAndGetCorrectJsonDataString(paymentData.jsonData)
+		val jsonDataString: String? = checkAndGetCorrectJsonDataString(paymentData.getJsonData())
 
 		val body = PaymentRequestBody(amount = paymentData.amount,
 									  currency = paymentData.currency.code,

@@ -28,7 +28,7 @@ internal class PaymentOptionsViewModel(
 
     fun getSpeiPaymentData() {
 
-        val jsonDataString: String? = checkAndGetCorrectJsonDataString(paymentData.jsonData)
+        val jsonDataString: String? = checkAndGetCorrectJsonDataString(paymentData.getJsonData())
 
         val body = AltpayPayRequestBody(amount = paymentData.amount,
             currency = paymentData.currency.code,
