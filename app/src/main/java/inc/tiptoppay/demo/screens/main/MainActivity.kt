@@ -15,7 +15,6 @@ import inc.tiptoppay.sdk.configuration.TipTopPaySDK
 import inc.tiptoppay.sdk.configuration.PaymentConfiguration
 import inc.tiptoppay.sdk.configuration.PaymentData
 import inc.tiptoppay.sdk.models.Currency
-import inc.tiptoppay.sdk.models.Region
 
 class MainActivity : BaseActivity() {
 
@@ -126,7 +125,7 @@ class MainActivity : BaseActivity() {
 
 		val paymentData = PaymentData(
 			amount = amount,
-			currency = Currency.MXN,
+			currency = Currency.KZT,
 			invoiceId = invoiceId,
 			description = description,
 			accountId = accountId,
@@ -139,7 +138,6 @@ class MainActivity : BaseActivity() {
 
 		val configuration = PaymentConfiguration(
 			publicId = publicId,
-			region = Region.MX,
 			paymentData = paymentData,
 			scanner = CardIOScanner(),
 			requireEmail = false,

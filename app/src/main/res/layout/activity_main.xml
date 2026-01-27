@@ -48,7 +48,7 @@
                 android:id="@+id/edit_api_url"
                 style="@style/DemoEditText"
                 android:text=""
-                android:hint="https://api.tiptoppay.mx/"/>
+                android:hint="https://api.tiptoppay.kz/"/>
 
             <TextView
                 style="@style/DemoTextView"

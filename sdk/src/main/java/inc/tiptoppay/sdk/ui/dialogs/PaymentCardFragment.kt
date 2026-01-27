@@ -17,7 +17,6 @@ import inc.tiptoppay.sdk.R
 import inc.tiptoppay.sdk.card.Card
 import inc.tiptoppay.sdk.card.CardType
 import inc.tiptoppay.sdk.databinding.DialogTtpsdkPaymentCardBinding
-import inc.tiptoppay.sdk.models.Region
 import inc.tiptoppay.sdk.scanner.CardData
 import inc.tiptoppay.sdk.ui.PaymentActivity
 import inc.tiptoppay.sdk.ui.dialogs.base.BasePaymentBottomSheetFragment
@@ -203,15 +202,6 @@ internal class PaymentCardFragment :
 			)
 		)
 
-		if (paymentConfiguration!!.region == Region.MX) {
-
-			binding.text3dsInfo.visibility = View.VISIBLE
-			binding.button3dsInfoPopup.visibility = View.VISIBLE
-
-			binding.button3dsInfoPopup.setOnClickListener {
-				showPopupSaveCardInfo()
-			}
-		}
 
 		updatePaymentSystemIcon("")
 		updateStateButtons()

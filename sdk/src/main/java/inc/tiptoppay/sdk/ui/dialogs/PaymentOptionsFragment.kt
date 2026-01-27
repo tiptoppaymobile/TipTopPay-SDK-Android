@@ -14,10 +14,8 @@ import androidx.core.view.isGone
 import androidx.fragment.app.viewModels
 import com.google.android.material.checkbox.MaterialCheckBox
 import inc.tiptoppay.sdk.R
-import inc.tiptoppay.sdk.configuration.SpeiData
 import inc.tiptoppay.sdk.databinding.DialogTtpsdkPaymentOptionsBinding
 import inc.tiptoppay.sdk.models.ApiError
-import inc.tiptoppay.sdk.models.SDKConfiguration
 import inc.tiptoppay.sdk.ui.PaymentActivity
 import inc.tiptoppay.sdk.ui.dialogs.base.BasePaymentBottomSheetFragment
 import inc.tiptoppay.sdk.util.InjectorUtils
@@ -29,17 +27,12 @@ import inc.tiptoppay.sdk.viewmodel.PaymentOptionsViewState
 
 internal enum class PaymentOptionsStatus {
 	Waiting,
-	SpeiLoading,
-	SpeiSuccess,
 	Failed;
 }
 internal class PaymentOptionsFragment :
 	BasePaymentBottomSheetFragment<PaymentOptionsViewState, PaymentOptionsViewModel>() {
 	interface IPaymentOptionsFragment {
 		fun runCardPayment()
-		fun runInstallments()
-		fun runCash()
-		fun runSpei(speiData: SpeiData)
 		fun runGooglePay()
 	}
 
@@ -81,24 +74,6 @@ internal class PaymentOptionsFragment :
 			binding.buttonGooglepay.root.visibility = View.GONE
 		}
 
-		if (sdkConfig?.availablePaymentMethods?.installmentsAvailable == true) {
-			binding.buttonInstallments.visibility = View.VISIBLE
-		} else {
-			binding.buttonInstallments.visibility = View.GONE
-		}
-
-		if (sdkConfig?.availablePaymentMethods?.cashAvailable == true) {
-			binding.layontButtonCash.visibility = View.VISIBLE
-		} else {
-			binding.layontButtonCash.visibility = View.GONE
-		}
-
-		if (sdkConfig?.availablePaymentMethods?.speiAvailable == true) {
-			binding.buttonSpei.visibility = View.VISIBLE
-		} else {
-			binding.buttonSpei.visibility = View.GONE
-		}
-
 		updateWith(state.status, state.reasonCode)
 	}
 
@@ -108,21 +83,7 @@ internal class PaymentOptionsFragment :
 
 		when (status) {
 			PaymentOptionsStatus.Waiting -> {
-				setSpeiLoading(false)
-			}
-			PaymentOptionsStatus.SpeiLoading -> {
-				setSpeiLoading(true)
-				disableAllButtons()
-			}
-			PaymentOptionsStatus.SpeiSuccess -> {
-				setSpeiLoading(false)
-				enableAllButtons()
-				val listener = requireActivity() as? IPaymentOptionsFragment
-				val speiData = viewModel.viewState.value?.speiData
-				if (speiData != null) {
-					listener?.runSpei(speiData)
-					dismiss()
-				}
+
 			}
 			PaymentOptionsStatus.Failed -> {
 				enableAllButtons()
@@ -141,17 +102,6 @@ internal class PaymentOptionsFragment :
 		super.onViewCreated(view, savedInstanceState)
 
 		activity().component.inject(viewModel)
-
-		if (sdkConfig?.cashMinAmount != null) {
-			if (sdkConfig?.cashMinAmount!!.toFloat() > paymentConfiguration?.paymentData?.amount?.toFloat() ?: 0.0f) {
-				binding.viewBlockCash.visibility = View.VISIBLE
-				binding.textCashNeedMore.visibility = View.VISIBLE
-				binding.textCashNeedMore.text = getString(R.string.ttpsdk_text_cash_min_hint) + " " + String.format(
-					"%.2f " + paymentConfiguration!!.paymentData.currency.symbol,
-					sdkConfig?.cashMinAmount!!.toDouble()
-				)
-			}
-		}
 
 		checkSaveCardState()
 
@@ -207,31 +157,6 @@ internal class PaymentOptionsFragment :
 			val listener = requireActivity() as? IPaymentOptionsFragment
 			listener?.runCardPayment()
 			dismiss()
-		}
-
-		binding.buttonInstallments.setOnClickListener {
-			updateEmail()
-			updateSaveCard()
-
-			val listener = requireActivity() as? IPaymentOptionsFragment
-			listener?.runInstallments()
-			dismiss()
-		}
-
-		binding.buttonCash.setOnClickListener {
-			updateEmail()
-			updateSaveCard()
-
-			val listener = requireActivity() as? IPaymentOptionsFragment
-			listener?.runCash()
-			dismiss()
-		}
-
-		binding.buttonSpei.setOnClickListener {
-			updateEmail()
-			updateSaveCard()
-
-			viewModel.getSpeiPaymentData()
 		}
 
 		binding.buttonGooglepay.root.setOnClickListener {
@@ -339,16 +264,6 @@ internal class PaymentOptionsFragment :
 		}
 
 		return valid
-	}
-
-	private fun setSpeiLoading(isLoading: Boolean) {
-		if (isLoading) {
-			binding.buttonSpeiLogo.visibility = View.GONE
-			binding.buttonSpeiProgress.visibility = View.VISIBLE
-		} else {
-			binding.buttonSpeiLogo.visibility = View.VISIBLE
-			binding.buttonSpeiProgress.visibility = View.GONE
-		}
 	}
 
 	private fun disableAllButtons() {

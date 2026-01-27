@@ -10,26 +10,25 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.FragmentActivity
 import com.google.android.gms.wallet.AutoResolveHelper
 import com.google.android.gms.wallet.PaymentData
+import inc.tiptoppay.sdk.Constants
 import inc.tiptoppay.sdk.R
 import inc.tiptoppay.sdk.api.TipTopPayApi
 import inc.tiptoppay.sdk.api.models.ExternalPaymentMethods
 import inc.tiptoppay.sdk.configuration.PaymentConfiguration
-import inc.tiptoppay.sdk.configuration.SpeiData
 import inc.tiptoppay.sdk.configuration.TipTopPaySDK
 import inc.tiptoppay.sdk.dagger2.TipTopPayComponent
 import inc.tiptoppay.sdk.dagger2.TipTopPayModule
 import inc.tiptoppay.sdk.dagger2.TipTopPayNetModule
 import inc.tiptoppay.sdk.databinding.ActivityTtpsdkPaymentBinding
+import inc.tiptoppay.sdk.log.TipTopPaySendLogHttpClient
+import inc.tiptoppay.sdk.log.TipTopPayUncaughtExceptionHandler
 import inc.tiptoppay.sdk.models.ApiError
 import inc.tiptoppay.sdk.models.SDKConfiguration
-import inc.tiptoppay.sdk.ui.dialogs.InstallmentsFragment
 import inc.tiptoppay.sdk.ui.dialogs.PaymentCardFragment
-import inc.tiptoppay.sdk.ui.dialogs.PaymentCashFragment
 import inc.tiptoppay.sdk.ui.dialogs.PaymentFinishFragment
 import inc.tiptoppay.sdk.ui.dialogs.PaymentFinishStatus
 import inc.tiptoppay.sdk.ui.dialogs.PaymentOptionsFragment
 import inc.tiptoppay.sdk.ui.dialogs.PaymentProcessFragment
-import inc.tiptoppay.sdk.ui.dialogs.PaymentSpeiFragment
 import inc.tiptoppay.sdk.ui.dialogs.base.BasePaymentBottomSheetFragment
 import inc.tiptoppay.sdk.util.GooglePayHandler
 import inc.tiptoppay.sdk.util.nextFragment
@@ -40,9 +39,7 @@ import javax.inject.Inject
 internal class PaymentActivity : FragmentActivity(),
     BasePaymentBottomSheetFragment.IPaymentFragment,
     PaymentOptionsFragment.IPaymentOptionsFragment, PaymentCardFragment.IPaymentCardFragment,
-    PaymentProcessFragment.IPaymentProcessFragment, InstallmentsFragment.IInstallmentsFragment,
-    PaymentCashFragment.IPaymentCashFragment, PaymentSpeiFragment.IPaymentSpeiFragment,
-    PaymentFinishFragment.IPaymentFinishFragment {
+    PaymentProcessFragment.IPaymentProcessFragment, PaymentFinishFragment.IPaymentFinishFragment {
 
     val SDKConfiguration: SDKConfiguration = SDKConfiguration()
 
@@ -50,7 +47,6 @@ internal class PaymentActivity : FragmentActivity(),
 
     @Inject
     lateinit var api: TipTopPayApi
-
 
     companion object {
         private const val REQUEST_CODE_GOOGLE_PAY = 1
@@ -71,7 +67,7 @@ internal class PaymentActivity : FragmentActivity(),
     internal val component: TipTopPayComponent by lazy {
 
         val apiUrl = if (paymentConfiguration!!.apiUrl.isNullOrEmpty()) {
-            paymentConfiguration!!.region.apiUrl
+            Constants.baseApiUrl
         } else {
             paymentConfiguration!!.apiUrl
         }
@@ -90,7 +86,11 @@ internal class PaymentActivity : FragmentActivity(),
     private lateinit var binding: ActivityTtpsdkPaymentBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        Thread.setDefaultUncaughtExceptionHandler(TipTopPayUncaughtExceptionHandler.getInstance(this))
         super.onCreate(savedInstanceState)
+
+        TipTopPaySendLogHttpClient.setPublicId(paymentConfiguration?.publicId.toString())
+
         binding = ActivityTtpsdkPaymentBinding.inflate(layoutInflater)
         val view = binding.root
         setContentView(view)
@@ -132,9 +132,6 @@ internal class PaymentActivity : FragmentActivity(),
                 if (response.success == true) {
                     
 					var isGooglePayAvailable = false
-					var isInstallmentsAvailable = false
-					var isCashAvailable = false
-					var isSpeiAvailable = false
 
 					for (paymentMethod in response.model?.externalPaymentMethods!!) {
 						if (paymentMethod.type == ExternalPaymentMethods.GOOGLE_PAY) {
@@ -144,22 +141,9 @@ internal class PaymentActivity : FragmentActivity(),
 									paymentMethod.gPayGatewayName
 							}
 						}
-						if (paymentMethod.type == ExternalPaymentMethods.INSTALLMENTS) {
-							isInstallmentsAvailable = paymentMethod.enabled ?: false
-						}
-						if (paymentMethod.type == ExternalPaymentMethods.CASH) {
-							isCashAvailable = paymentMethod.enabled ?: false
-							SDKConfiguration.cashMinAmount = paymentMethod.cashMinAmount ?: 0
-							SDKConfiguration.cashMethods = paymentMethod.cashMethods ?: ArrayList()
-						}
-						if (paymentMethod.type == ExternalPaymentMethods.SPEI) {
-							isSpeiAvailable = paymentMethod.enabled ?: false
-						}
 					}
 
 					SDKConfiguration.availablePaymentMethods.googlePayAvailable = isGooglePayAvailable
-					SDKConfiguration.availablePaymentMethods.cashAvailable = isCashAvailable
-					SDKConfiguration.availablePaymentMethods.speiAvailable = isSpeiAvailable
 
                     SDKConfiguration.terminalConfiguration.isSaveCard =
                         response.model?.features?.isSaveCard
@@ -167,15 +151,8 @@ internal class PaymentActivity : FragmentActivity(),
                         response.model?.skipExpiryValidation
                     SDKConfiguration.terminalConfiguration.terminalName = response.model.terminalName
 
-                    if (isInstallmentsAvailable) {
-                        getInstallmentsConfiguration(
-                            paymentConfiguration?.publicId!!,
-                            paymentConfiguration?.paymentData?.amount!!
-                        )
-                    } else {
-                        SDKConfiguration.availablePaymentMethods.installmentsAvailable = false
-                        prepareGooglePay()
-                    }
+                    prepareGooglePay()
+
                 } else {
                     Toast.makeText(this, response.message, Toast.LENGTH_SHORT).show()
                     finish()
@@ -251,21 +228,6 @@ internal class PaymentActivity : FragmentActivity(),
         fragment.show(supportFragmentManager, "")
     }
 
-    override fun runInstallments() {
-        val fragment = InstallmentsFragment.newInstance()
-        fragment.show(supportFragmentManager, "")
-    }
-
-    override fun runCash() {
-        val fragment = PaymentCashFragment.newInstance()
-        fragment.show(supportFragmentManager, "")
-    }
-    
-	override fun runSpei(speiData: SpeiData) {
-		val fragment = PaymentSpeiFragment.newInstance(speiData)
-		fragment.show(supportFragmentManager, "")
-	}
-
 	override fun runGooglePay() {
 		GooglePayHandler.present(
             paymentConfiguration!!, 
@@ -279,12 +241,6 @@ internal class PaymentActivity : FragmentActivity(),
         val fragment = PaymentProcessFragment.newInstance(cryptogram)
         fragment.show(supportFragmentManager, "")
     }
-
-    override fun onPayInstallmentsClicked(cryptogram: String, term: Int) {
-        val fragment = PaymentProcessFragment.newInstance(cryptogram, term)
-        fragment.show(supportFragmentManager, "")
-    }
-
 
     override fun onPaymentFinished(transactionId: Long) {
         setResult(Activity.RESULT_OK, Intent().apply {
@@ -363,30 +319,6 @@ internal class PaymentActivity : FragmentActivity(),
 
     private fun handleGooglePayFailure(intent: Intent?) {
         finish()
-    }
-
-    override fun onCashSuccess(success: Boolean, message: String) {
-        if (success) {
-            val fragment = PaymentFinishFragment.newInstance(PaymentFinishStatus.Successed)
-            fragment.show(supportFragmentManager, "")
-        } else {
-            val fragment = PaymentFinishFragment.newInstance(PaymentFinishStatus.Failed, message, true)
-            fragment.show(supportFragmentManager, "")
-        }
-    }
-
-    override fun onSpeiSuccess(success: Boolean, message: String) {
-        if (success) {
-            val fragment = PaymentFinishFragment.newInstance(PaymentFinishStatus.Successed)
-            fragment.show(supportFragmentManager, "")
-        } else {
-            val fragment = PaymentFinishFragment.newInstance(PaymentFinishStatus.Failed, message, true)
-            fragment.show(supportFragmentManager, "")
-        }
-    }
-
-    override fun onSpeiBackPressed() {
-        showUi()
     }
 
     fun showPaymentOptions() {

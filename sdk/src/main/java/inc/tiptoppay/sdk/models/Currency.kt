@@ -2,7 +2,6 @@ package inc.tiptoppay.sdk.models
 
 enum class Currency(val code: String, val symbol: String) {
 
-	MXN("MXN", "MXN"),
 	KZT( "KZT", "₸"),
 	RUB("RUB", "\u20BD"),
 	USD("USD", "$"),

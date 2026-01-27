@@ -8,14 +8,12 @@ import inc.tiptoppay.sdk.api.AuthenticationInterceptor
 import inc.tiptoppay.sdk.api.TipTopPayApi
 import inc.tiptoppay.sdk.api.TipTopPayApiService
 import inc.tiptoppay.sdk.api.UserAgentInterceptor
+import inc.tiptoppay.sdk.log.TipTopPayLoggingInterceptor
 import inc.tiptoppay.sdk.ui.PaymentActivity
 import inc.tiptoppay.sdk.viewmodel.PaymentCardViewModel
 import inc.tiptoppay.sdk.viewmodel.PaymentFinishViewModel
-import inc.tiptoppay.sdk.viewmodel.InstallmentsViewModel
-import inc.tiptoppay.sdk.viewmodel.PaymentCashViewModel
 import inc.tiptoppay.sdk.viewmodel.PaymentOptionsViewModel
 import inc.tiptoppay.sdk.viewmodel.PaymentProcessViewModel
-import inc.tiptoppay.sdk.viewmodel.PaymentSpeiViewModel
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -62,6 +60,7 @@ class TipTopPayNetModule(private val publicId: String, private var apiUrl: Strin
 		val client = okHttpClientBuilder
 			.addInterceptor(userAgentInterceptor)
 			.addInterceptor(authenticationInterceptor)
+			.addNetworkInterceptor(TipTopPayLoggingInterceptor())
 			.connectTimeout(60, TimeUnit.SECONDS)
 			.readTimeout(60, TimeUnit.SECONDS)
 			.followRedirects(false)
@@ -86,7 +85,4 @@ internal interface TipTopPayComponent {
 	fun inject(cardViewModel: PaymentCardViewModel)
 	fun inject(processViewModel: PaymentProcessViewModel)
 	fun inject(finishViewModel: PaymentFinishViewModel)
-	fun inject(installmentsViewModel: InstallmentsViewModel)
-	fun inject(cashViewModel: PaymentCashViewModel)
-	fun inject(speiViewModel: PaymentSpeiViewModel)
 }
