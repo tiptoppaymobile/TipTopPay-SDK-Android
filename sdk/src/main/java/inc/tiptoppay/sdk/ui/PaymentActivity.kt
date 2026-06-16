@@ -16,6 +16,7 @@ import inc.tiptoppay.sdk.api.TipTopPayApi
 import inc.tiptoppay.sdk.api.models.ExternalPaymentMethods
 import inc.tiptoppay.sdk.configuration.PaymentConfiguration
 import inc.tiptoppay.sdk.configuration.TipTopPaySDK
+import inc.tiptoppay.sdk.dagger2.DaggerTipTopPayComponent
 import inc.tiptoppay.sdk.dagger2.TipTopPayComponent
 import inc.tiptoppay.sdk.dagger2.TipTopPayModule
 import inc.tiptoppay.sdk.dagger2.TipTopPayNetModule
@@ -66,13 +67,9 @@ internal class PaymentActivity : FragmentActivity(),
 
     internal val component: TipTopPayComponent by lazy {
 
-        val apiUrl = if (paymentConfiguration!!.apiUrl.isNullOrEmpty()) {
-            Constants.baseApiUrl
-        } else {
-            paymentConfiguration!!.apiUrl
-        }
+        val apiUrl = Constants.baseApiUrl
 
-        inc.tiptoppay.sdk.dagger2.DaggerTipTopPayComponent
+        DaggerTipTopPayComponent
             .builder()
             .tipTopPayModule(TipTopPayModule())
             .tipTopPayNetModule(TipTopPayNetModule(paymentConfiguration!!.publicId, apiUrl))
@@ -157,27 +154,6 @@ internal class PaymentActivity : FragmentActivity(),
                     Toast.makeText(this, response.message, Toast.LENGTH_SHORT).show()
                     finish()
                 }
-            }
-            .onErrorReturn {
-                onInternetConnectionError()
-            }
-            .subscribe()
-    }
-
-    private fun getInstallmentsConfiguration(publicId: String, amount: String) {
-        disposable = api.getInstallmentsConfiguration(publicId, amount)
-            .toObservable()
-            .observeOn(AndroidSchedulers.mainThread())
-            .map { response ->
-                if (response.success == true) {
-
-                    if (response.model?.isCardInstallmentAvailable == true) {
-                        SDKConfiguration.availablePaymentMethods.installmentsAvailable = true
-                        SDKConfiguration.installmentsVariant = response.model.configuration!!
-                    }
-                }
-
-                prepareGooglePay()
             }
             .onErrorReturn {
                 onInternetConnectionError()

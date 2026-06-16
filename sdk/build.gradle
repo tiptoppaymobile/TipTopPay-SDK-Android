@@ -6,11 +6,10 @@ plugins {
 }
 
 android {
-    compileSdkVersion 35
+    compileSdkVersion 37
 
     defaultConfig {
         minSdkVersion 24
-        targetSdkVersion 34
         multiDexEnabled false
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
@@ -47,18 +46,24 @@ android {
         jvmTarget = JavaVersion.VERSION_17.toString()
     }
     namespace 'inc.tiptoppay.sdk'
+    lint {
+        targetSdk 34
+    }
+    testOptions {
+        targetSdk 34
+    }
 }
 
 dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
-    implementation "org.jetbrains.kotlin:kotlin-stdlib:2.0.20"
-    implementation 'androidx.core:core-ktx:1.15.0'
-    implementation 'androidx.appcompat:appcompat:1.7.0'
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:2.4.0"
+    implementation 'androidx.core:core-ktx:1.19.0'
+    implementation 'androidx.appcompat:appcompat:1.7.1'
 
-    implementation 'com.google.android.material:material:1.12.0'
+    implementation 'com.google.android.material:material:1.14.0'
     implementation 'androidx.cardview:cardview:1.0.0'
-    implementation 'androidx.constraintlayout:constraintlayout:2.2.0'
-    implementation 'androidx.fragment:fragment-ktx:1.8.1'
+    implementation 'androidx.constraintlayout:constraintlayout:2.2.1'
+    implementation 'androidx.fragment:fragment-ktx:1.8.9'
     implementation 'androidx.arch.core:core-runtime:2.2.0'
 
     implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
@@ -69,9 +74,9 @@ dependencies {
     implementation "com.squareup.okhttp3:okhttp:$okHttp3Version"
     implementation "com.squareup.okhttp3:logging-interceptor:$okHttp3Version"
 
-    implementation 'ru.tinkoff.decoro:decoro:1.5.2'
+    implementation 'ru.tinkoff.decoro:decoro:1.7.0'
 
-    implementation 'org.jsoup:jsoup:1.15.4'
+    implementation 'org.jsoup:jsoup:1.22.2'
 
     // rxkotlin
     implementation 'io.reactivex.rxjava2:rxkotlin:2.4.0'
@@ -93,5 +98,5 @@ dependencies {
     //rx google-play-services
     implementation 'io.ashdavies.rx.rxtasks:rx-tasks:2.2.0'
 
-    implementation("io.coil-kt:coil-compose:2.4.0")
+    implementation("io.coil-kt:coil-compose:2.7.0")
 }

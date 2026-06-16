@@ -137,6 +137,16 @@ class Card {
 			return false
 		}
 
+		fun isKaspiBank(bankName: String): Boolean {
+			if (bankName == "JSC KASPI BANK")
+				return true
+			if (bankName == "KASPI BANK JSC")
+				return true
+			if (bankName == "Kaspi Bank JSC")
+				return true
+			return false
+		}
+
 		private fun prepareCardNumber(cardNumber: String): String {
 			return cardNumber.replace("\\s".toRegex(), "")
 		}

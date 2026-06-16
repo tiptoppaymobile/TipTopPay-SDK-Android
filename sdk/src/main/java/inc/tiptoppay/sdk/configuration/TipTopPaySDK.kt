@@ -3,6 +3,7 @@ package inc.tiptoppay.sdk.configuration
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
+import androidx.activity.ComponentActivity
 import androidx.activity.result.ActivityResultLauncher
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
@@ -12,6 +13,7 @@ import inc.tiptoppay.sdk.ui.PaymentActivity
 
 interface TipTopPaySDK {
 	fun start(configuration: PaymentConfiguration, from: Activity, requestCode: Int)
+	fun launcher(from: ComponentActivity, result: (Transaction) -> Unit) : ActivityResultLauncher<PaymentConfiguration>
 	fun launcher(from: AppCompatActivity, result: (Transaction) -> Unit) : ActivityResultLauncher<PaymentConfiguration>
 	fun launcher(from: FragmentActivity, result: (Transaction) -> Unit) : ActivityResultLauncher<PaymentConfiguration>
 	fun launcher(from: Fragment, result: (Transaction) -> Unit) : ActivityResultLauncher<PaymentConfiguration>
@@ -41,6 +43,11 @@ internal class TipTopPaySDKImpl: TipTopPaySDK {
 		from.startActivityForResult(this.getStartIntent(from, configuration), requestCode)
 	}
 
+	override fun launcher(
+		from: ComponentActivity,
+		result: (Transaction) -> Unit): ActivityResultLauncher<PaymentConfiguration> {
+		return from.registerForActivityResult(TipTopPayIntentSender(), result)
+	}
 	override fun launcher(
 		from: AppCompatActivity,
 		result: (Transaction) -> Unit): ActivityResultLauncher<PaymentConfiguration> {

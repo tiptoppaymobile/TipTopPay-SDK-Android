@@ -4,13 +4,9 @@ import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
-import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.LinearLayout
-import android.widget.PopupWindow
-import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import inc.tiptoppay.sdk.R
@@ -64,7 +60,11 @@ internal class PaymentCardFragment :
 	override val viewModel: PaymentCardViewModel by viewModels()
 
 	override fun render(state: PaymentCardViewState) {
-
+		if (state.isKaspiBank) {
+			binding.textInfo.visibility = View.VISIBLE
+		} else {
+			binding.textInfo.visibility = View.GONE
+		}
 	}
 
 	private val cardNumberFormatWatcher by lazy {
@@ -112,6 +112,8 @@ internal class PaymentCardFragment :
 
 				updatePaymentSystemIcon(cardNumber)
 				updateStateButtons()
+
+				viewModel.getBinInfo(cardNumber)
 			}
 		})
 
@@ -234,20 +236,6 @@ internal class PaymentCardFragment :
 
 	private fun enableButtons() {
 		binding.viewBlockButtons.visibility = View.GONE
-	}
-
-	private fun showPopupSaveCardInfo() {
-		val popupView = layoutInflater.inflate(R.layout.popup_ttpsdk_3ds_info, null)
-
-		val wid = LinearLayout.LayoutParams.WRAP_CONTENT
-		val high = LinearLayout.LayoutParams.WRAP_CONTENT
-		val focus= true
-		val popupWindow = PopupWindow(popupView, wid, high, focus)
-
-		val background = activity?.let { ContextCompat.getDrawable(it, R.drawable.ttpsdk_bg_popup) }
-		popupView.background = background
-
-		popupWindow.showAtLocation(view, Gravity.CENTER, 0, 0)
 	}
 
 	private fun isValid(): Boolean {

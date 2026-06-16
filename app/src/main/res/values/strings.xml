@@ -1,10 +1,3 @@
 <resources>
-    <string name="app_name" translatable="false">TipTopPay Demo</string>
-
-    <!-- Dialog -->
-    <string name="dialog_loading_title" translatable="false">Загрузка данных</string>
-    <string name="dialog_loading_content" translatable="false">Пожалуйста, подождите…</string>
-
-    <!-- Common -->
-    <string name="common_no_internet_connection" translatable="false">Отсутствует соединение с интернетом</string>
+    <string name="app_name" translatable="false">TTP SDK Demo</string>
 </resources>

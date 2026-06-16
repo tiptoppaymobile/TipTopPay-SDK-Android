@@ -45,13 +45,4 @@ interface TipTopPayApiService {
 
 	@GET("merchant/configuration")
 	fun getMerchantConfiguration(@Query("terminalPublicId") publicId: String): Single<TipTopPayMerchantConfigurationResponse>
-
-	@GET("installments/calculate/sum-by-period")
-	fun getInstallmentsConfiguration(@Query("terminalPublicId") publicId: String, @Query("amount") amount: String): Single<TipTopPayInstallmentsConfigurationResponse>
-
-	@POST("payments/qr/status/wait")
-	fun qrLinkStatusWait(@Body body: QrLinkStatusWaitBody): Single<QrLinkStatusWaitResponse>
-
-	@POST("stp/spei/payment-details")
-	fun sendEmailForSpei(@Body body: SpeiSendEmailBody): Single<SpeiSendEmailResponse>
 }

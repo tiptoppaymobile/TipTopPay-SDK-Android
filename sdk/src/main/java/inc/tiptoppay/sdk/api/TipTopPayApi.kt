@@ -25,11 +25,6 @@ class TipTopPayApi @Inject constructor(private val apiService: TipTopPayApiServi
 			.subscribeOn(Schedulers.io())
 	}
 
-	fun getInstallmentsConfiguration(publicId: String, amount: String): Single<TipTopPayInstallmentsConfigurationResponse> {
-		return apiService.getInstallmentsConfiguration(publicId, amount)
-			.subscribeOn(Schedulers.io())
-	}
-
 	fun charge(requestBody: PaymentRequestBody): Single<TipTopPayTransactionResponse> {
 		return apiService.charge(requestBody)
 			.subscribeOn(Schedulers.io())
@@ -86,16 +81,6 @@ class TipTopPayApi @Inject constructor(private val apiService: TipTopPayApiServi
 
 	fun altpayPay(requestBody: AltpayPayRequestBody): Single<AltpayPayTransactionResponse> {
 		return apiService.altpayPay(requestBody)
-			.subscribeOn(Schedulers.io())
-	}
-
-	fun qrLinkStatusWait(requestBody: QrLinkStatusWaitBody): Single<QrLinkStatusWaitResponse> {
-		return apiService.qrLinkStatusWait(requestBody)
-			.subscribeOn(Schedulers.io())
-	}
-
-	fun sendEmailForSpei(requesrBody: SpeiSendEmailBody): Single<SpeiSendEmailResponse> {
-		return apiService.sendEmailForSpei(requesrBody)
 			.subscribeOn(Schedulers.io())
 	}
 }

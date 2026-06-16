@@ -120,7 +120,7 @@ class ThreeDsDialogFragment : DialogFragment() {
 
 	internal inner class ThreeDsJavaScriptInterface {
 		@JavascriptInterface
-		fun processHTML(html: String?) {
+		fun processHTML(html: String) {
 			val doc: Document = Jsoup.parse(html)
 			val element: Element? = doc.select("body").first()
 			val jsonObject = JsonParser().parse(element?.ownText()).asJsonObject

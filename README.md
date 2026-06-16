@@ -15,7 +15,7 @@ repositories {
     maven { url 'https://jitpack.io' }
 }
 ```
-2. В build.gradle уровня приложения добавьте следующие зависимость указав последнюю доступную версию SDK:
+2. В build.gradle уровня приложения добавьте следующую зависимость указав последнюю доступную версию SDK:
 
 [![](https://jitpack.io/v/tiptoppaymobile/TipTopPay-SDK-Android.svg)](https://jitpack.io/#tiptoppaymobile/TipTopPay-SDK-Android)
 
@@ -222,6 +222,8 @@ val cvvCryptogramPacket = Card.cardCryptogramForCVV(cvv)
 ```
 
 ### История обновлений:
+#### 1.0.11
+* Добавлена подсказка о лимитах для Kaspi Bank
 
 #### 1.0.10
 * Повышена стабильность работы, добавлено логирование

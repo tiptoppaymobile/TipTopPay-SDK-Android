@@ -10,7 +10,6 @@ data class PaymentConfiguration(val publicId: String,
 								val scanner: CardScanner?,
 								val requireEmail: Boolean = false,
 								private val useDualMessagePayment: Boolean = false,
-								val apiUrl: String = "",
 								val testMode: Boolean = false): Parcelable {
 									fun isUseDualMessagePayment(): Boolean {
 										return useDualMessagePayment
